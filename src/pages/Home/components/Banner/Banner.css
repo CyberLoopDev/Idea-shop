@@ -1,0 +1,79 @@
+
+.promo-banners {
+    padding: 40px 20px;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.promo-banners__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
+}
+
+
+
+
+.promo-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    min-height: 300px;
+    padding: 40px;
+    color: #222;
+    text-decoration: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.promo-card__content {
+    position: relative;
+    z-index: 2;
+    max-width: 55%; 
+}
+
+.promo-card__title {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: pre-line; 
+    margin-bottom: 15px;
+}
+
+.promo-card__subtitle {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+
+@media (max-width: 992px) {
+    .promo-banners__grid {
+        grid-template-columns: 1fr;
+    }
+    .promo-card__content {
+        max-width: 60%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .promo-card {
+        padding: 30px;
+        min-height: 250px;
+    }
+    .promo-card__title {
+        font-size: 28px;
+    }
+}

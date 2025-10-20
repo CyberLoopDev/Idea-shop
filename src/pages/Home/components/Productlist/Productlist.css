@@ -1,0 +1,28 @@
+.product-categories{
+    display: flex;
+    column-gap: 30px;
+    font-size: 24px;
+}
+
+.category-text{
+    cursor: pointer;
+    padding: 4px 0;
+    border-bottom: 3px solid transparent;
+    transition: 0.5ms ease;
+}
+
+.category-text:hover{
+    color: #7188d4;
+    border-bottom: #7188d4 3px solid;
+     transition: 0.1s ease;
+}
+
+.products-container{
+    width: 100%;
+    display: flex;
+    column-gap: 40px;
+}
+
+.category-text.active{
+    border-bottom: #7188d4 3px solid;
+}

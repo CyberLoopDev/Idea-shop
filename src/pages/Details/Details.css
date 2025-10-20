@@ -1,0 +1,74 @@
+.details{
+  margin-top: 40px;
+}
+
+
+.title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: 400;
+  color: #333333;
+}
+
+.paragraph {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 16px;
+  text-align: justify;
+  line-height: 24px;
+  color: #555555;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 400px;
+  background-color: #f0f0f0;
+  margin-bottom: 16px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.schedule,
+.requisites {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 24px;
+  color: #555555;
+  margin-bottom: 16px;
+}
+
+.schedule p,
+.requisites p {
+  margin: 0;
+  display: flex;
+}
+
+.tab-spacer {
+  flex-grow: 1;
+  min-width: 30px;
+}
+
+.paragraph:has(a[href^="mailto:"]),
+.paragraph:has(a[href^="tel:"]) {
+  margin-bottom: 8px;
+}

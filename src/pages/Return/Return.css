@@ -1,0 +1,32 @@
+.return{
+  margin-top: 40px;
+}
+
+.title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: 400;
+  color: #555555; /* Серебристый цвет */
+}
+
+.paragraph {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 1em;
+  text-align: justify;
+  color: #555555; /* Серебристый цвет */
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

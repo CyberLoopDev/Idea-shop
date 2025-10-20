@@ -1,0 +1,125 @@
+
+.categories-section {
+    padding: 80px 1px;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin-right: 50px;
+}
+
+.slider-header {
+    max-width: 1000px; 
+    margin: 0 auto 40px auto;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #1a1a1a;
+}
+
+
+.slider-wrapper {
+    position: relative;
+    max-width: 1000px; 
+    margin: 0 auto;
+    padding: 0 60px; 
+}
+
+
+.categories-swiper {
+    height: 300px; 
+}
+
+
+
+.category-card {
+    display: block;
+    text-decoration: none;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.category-card__image-wrapper {
+    background-color: #f0f5ff; 
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 15px;
+    overflow: hidden; 
+}
+
+.category-card__image-wrapper img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1; 
+    object-fit: contain; 
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-card__image-wrapper img {
+    transform: scale(1.05); 
+}
+
+.category-card__name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+    position: absolute;
+    top: 45%; 
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    color: #1a1a1a;
+    font-size: 24px;
+}
+
+.slider-wrapper:hover .swiper-button-prev-custom,
+.slider-wrapper:hover .swiper-button-next-custom {
+    opacity: 1;
+}
+
+.swiper-button-prev-custom {
+    left: 0; 
+}
+
+.swiper-button-next-custom {
+    right: 0;
+}
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+    transform: translateY(-50%) scale(1.1); 
+}
+
+
+
+@media (max-width: 992px) {
+    .slider-wrapper {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slider-wrapper {
+        padding: 0;
+    }
+
+    .swiper-button-prev-custom,
+    .swiper-button-next-custom {
+        display: none; 
+    }
+}

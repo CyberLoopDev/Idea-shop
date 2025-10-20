@@ -1,0 +1,43 @@
+.features-section {
+    padding: 40px 20px;
+    background-color: #E9EBF8;
+    width: 1060px;
+    margin-left: 45px;
+    border-radius: 5px;
+
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 950px;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 48px; /* react-icons өлчөмүн тууралайт */
+    color: #8A9FF0; /* Иконканын түсү */
+}
+
+.feature-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #555;
+    font-weight: 600;
+
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
