@@ -19,7 +19,7 @@ import img10 from '../../../assets/10.webp'
 import img11 from '../../../assets/11.webp'
 import img12 from '../../../assets/12.webp'
 import img13 from '../../../assets/13.webp'
-import img14  from '../../../assets/14.webp'
+
 
 
 const Header = () => {
@@ -144,11 +144,7 @@ const Header = () => {
           </div>
           <div className="item">
             <img src={img13} className="showform-img" />
-            <p>Акции</p>
-          </div>
-          <div className="item">
-            <img src={img14} className="showform-img" />
-            <p>Популярное</p>
+            <p>Скидки</p>
           </div>
         </div>
       </div>

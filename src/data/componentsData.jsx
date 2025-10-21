@@ -11,7 +11,6 @@ import categoryImg10 from '../assets/10.webp';
 import categoryImg11 from '../assets/11.webp';
 import categoryImg12 from '../assets/12.webp';
 import categoryImg13 from '../assets/13.webp';
-import categoryImg14 from '../assets/14.webp';
 import promoMain1 from '../assets/banner-1.png';
 import promoMain2 from '../assets/banner-2.png';
 import { FaOdnoklassniki, FaStar, FaVk,  } from "react-icons/fa";
@@ -41,8 +40,7 @@ export const categoriesData = {
     { name: "Конструкторы", url: "/catalog/constructors", image: categoryImg10 },
     { name: "Хиты", url: "/catalog/hits", image: categoryImg11 },
     { name: "Новинки", url: "/catalog/new", image: categoryImg12 },
-    { name: "Акции", url: "/catalog/sale", image: categoryImg13 },
-    { name: "Популярное", url: "/catalog/popular", image: categoryImg14 },
+    { name: "Скидки", url: "/catalog/sale", image: categoryImg13 },
   ]
 };
 
