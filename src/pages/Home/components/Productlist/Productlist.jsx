@@ -72,7 +72,7 @@ const ProductList = () => {
 
         
         <div className="products-container">
-          { loading === false && products &&  products.length > 0 ? (
+          {loading === false &&  products.length > 0 ? (
             products.map((item) => (
               <ProductCard
                 key={item._id}
@@ -81,9 +81,9 @@ const ProductList = () => {
                 imgUrl={item.img}
               />
             ))
-          ) : products &&  products.length < 1 ?  (
-              <p>Нету товаров</p>
-          ) : ( <p>загрузка</p>)}
+          ) : (
+            <p>загрузка</p>
+          )}
         </div>
 
        
