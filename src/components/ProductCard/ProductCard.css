@@ -5,6 +5,7 @@
     border-radius: 8px;
     padding: 10px;
     background: #d5d8d4e3;
+    position: relative;
 }
 
 .product-img{

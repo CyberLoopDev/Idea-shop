@@ -10,6 +10,7 @@ import Details from "../pages/Details/Details"
 import Profile from '../pages/Profile/Profile'
 import Cart from '../pages/Cart/Cart'
 import Favorites from '../pages/Favorites/Favorites'
+import Catalog from "../pages/Catalog/Catalog";
 export const router = createBrowserRouter([
     {
         element: <Layout />,
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
         children: [
         
                 { element: <Home />, path: ""},
+                { element: <Catalog />, path: 'catalog' },
                 { element:  <Delivery />, path: "delivery" },
                 { element: <Payment />, path: "payment" },
                 { element: <Return />, path: "return" },

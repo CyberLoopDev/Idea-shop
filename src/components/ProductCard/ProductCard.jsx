@@ -1,10 +1,17 @@
 import "./ProductCard.css";
 import { BsCart3 } from "react-icons/bs";
 import defaultImg from "../../assets/tovar_dlya_prodazhi.jpg";
+import { IoIosHeartEmpty, IoMdHeart } from "react-icons/io";
+import { useState } from "react";
+
 
 const ProductCard = ({ name, imgUrl, price }) => {
+
+  const [favorite, setFavorite] = useState()
+
   return (
     <div className="product-card">
+      
       <img
         src={imgUrl || defaultImg}
         alt={name}

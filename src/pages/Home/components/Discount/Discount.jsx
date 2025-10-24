@@ -1,6 +1,7 @@
 import React from "react";  
 import './Discount.css'
 import discountImg from '../../../../assets/discount-photo.webp'
+import { Link } from "react-router-dom";
 
 const Discount = () => {
     return (
@@ -13,7 +14,7 @@ const Discount = () => {
                             <h2 className="discount-title">Скидки на детскую мебель</h2>
                             <p className="discount-text">Сезонные скидки,распродажи,ликвидация! Все товары с сезонными скидками. </p>
                         </div>
-                        <button className="discount-btn">Все товары</button>
+                        <Link to='/catalog'><button className="discount-btn">Все товары</button></Link>
                     </div>
                 </div>
             </div>

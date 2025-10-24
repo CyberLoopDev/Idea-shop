@@ -1,0 +1,18 @@
+.advanced-filters-section {
+    padding: 90px 20px;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin-left: 40px;
+}
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.filters-title { font-size: 32px; font-weight: 800; color: #1a1a1a; }
+.filters-count { color: #888; margin-top: 5px; display: block; }
+.filters-reset-btn { background: none; border: none; color: #ff0033; cursor: pointer; font-weight: 500; }
+.filters-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }

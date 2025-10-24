@@ -72,7 +72,7 @@ const ProductList = () => {
 
         
         <div className="products-container">
-          {loading === false &&  products.length > 0 ? (
+          { loading === false && products &&  products.length > 0 ? (
             products.map((item) => (
               <ProductCard
                 key={item._id}
@@ -81,13 +81,13 @@ const ProductList = () => {
                 imgUrl={item.img}
               />
             ))
-          ) : (
-            <p>загрузка</p>
-          )}
+          ) : products &&  products.length < 1 ?  (
+              <p>Нету товаров</p>
+          ) : ( <p>загрузка</p>)}
         </div>
 
        
-        <div className="pagination" style={{ marginTop: "20px", textAlign: "center" }}>
+       <div className="pagination" style={{ marginTop: "20px", textAlign: "center" }}>
           <button
             onClick={() => handlePageChange(pagination.currentPage - 1)}
             disabled={pagination.currentPage === 1}
@@ -105,7 +105,7 @@ const ProductList = () => {
           >
             Следующая
           </button>
-        </div>
+        </div> 
       </div>
     </div>
   );

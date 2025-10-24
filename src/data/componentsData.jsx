@@ -50,14 +50,14 @@ export const promoBannersData = [
         title: "Выбираем\nпрофессию\nмечты",
         subtitle: "Детские товары для игр и творчества",
         backgroundImage: promoMain1, 
-        url: "/catalog/toys"
+        url: "/catalog/development"
     },
     {
         id: 2,
         title: "Товары\nдля любимого\nмалыша",
         subtitle: "С заботой о самом важном",
         backgroundImage: promoMain2, 
-        url: "/catalog/baby"
+        url: "/catalog/newborn"
     }
 ];
 
@@ -132,5 +132,27 @@ export const partnersData = {
         { id: 4, name: "Partner 4", logo: partnerLogo4 },
         { id: 5, name: "Saturn", logo: partnerLogo5 },
         { id: 6, name: "Rainbow", logo: partnerLogo1 }, 
+    ]
+};
+
+export const filterOptionsData = {
+    title: "Каталог",
+    totalProducts: 53,
+    filters: [
+        { id: 'sort', name: 'Сортировка', options: ['По умолчанию', 'Сначала дешевле', 'Сначала дороже'] },
+        { id: 'price', name: 'Цена', options: ['До 1000 ₽', '1000-5000 ₽', 'От 5000 ₽'] },
+        { id: 'color', name: 'Цвет', options: ['Красный', 'Синий', 'Зеленый', 'Черный'] },
+        { id: 'country', name: 'Страна', options: ['Кыргызстан', 'Китай', 'Россия'] },
+        { id: 'label', name: 'Метка', options: ['Новинка', 'Хит', 'Скидка'] },
+        { id: 'gender', name: 'Пол', options: ['Для девочек', 'Для мальчиков'] },
+        { id: 'height', name: 'Высота предмета', options: [] },
+        { id: 'filler', name: 'Наполнитель', options: [] },
+        { id: 'frame_length', name: 'Длина рамы', options: [] },
+        { id: 'frame_material', name: 'Материал рамы', options: [] },
+         { id: 'frame_material', name: 'Материал рамы', options: [] }, 
+         { id: 'frame_material', name: 'Материал рамы', options: [] },
+          { id: 'frame_material', name: 'Материал рамы', options: [] },
+           { id: 'frame_material', name: 'Материал рамы', options: [] },
+            { id: 'frame_material', name: 'Материал рамы', options: [] },
     ]
 };
