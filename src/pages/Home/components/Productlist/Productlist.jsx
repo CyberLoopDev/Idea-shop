@@ -71,20 +71,22 @@ const ProductList = () => {
         </ul>
 
         
-        <div className="products-container">
-          {loading === false &&  products.length > 0 ? (
-            products.map((item) => (
-              <ProductCard
+       <div className="products-container">
+    {loading === false && products.length > 0 ? (
+        products.map((item) => (
+            <ProductCard
                 key={item._id}
-                name={item.name}
-                price={item.price}
-                imgUrl={item.img}
-              />
-            ))
-          ) : (
-            <p>загрузка</p>
-          )}
-        </div>
+                // ИСПРАВЛЕННЫЙ ВЫЗОВ: передаем полный объект с правильным ключом 'id'
+                product={{
+                    ...item,
+                    id: item._id, // Меняем _id на id для соответствия Context
+                }}
+            />
+        ))
+    ) : (
+        <p>загрузка</p>
+    )}
+</div>
 
        
         <div className="pagination" style={{ marginTop: "20px", textAlign: "center" }}>

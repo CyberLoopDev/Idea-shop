@@ -1,0 +1,133 @@
+/* Cart.css */
+
+/* Стилизация заголовка, используем шрифт Inter из index.css */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 0;
+}
+
+.cart-item {
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 18px 25px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Стилизация текстового контента */
+.cart-item > * {
+    margin: 0;
+    padding: 0 10px;
+    text-align: left;
+}
+
+.cart-item h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    flex-basis: 40%;
+}
+
+.cart-item p {
+    font-size: 1rem;
+    color: #555;
+    flex-basis: 15%;
+    text-align: center;
+}
+
+.cart-item p:nth-child(4) { /* Стиль для "Сумма" */
+    font-weight: 700;
+    color: #007bff;
+    flex-basis: 20%;
+}
+
+
+.cart-item button {
+    background-color: #ced4da; /* Светло-серый, нейтральный */
+    color: #333;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease, color 0.2s ease;
+    flex-basis: auto;
+}
+
+.cart-item button:hover {
+    background-color: #ff4b4b; /* Меняем на красный при наведении */
+    color: white;
+}
+
+.cart-item button:active {
+    transform: scale(0.97);
+}
+
+/* Стили для пустого списка */
+.cart-list > p {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #777;
+    padding: 60px;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    border: 1px dashed #ddd;
+    margin: 20px 0;
+}
+
+/* Общая стоимость */
+.cart-total {
+    margin-top: 30px;
+    padding: 25px 30px;
+    background-color: #e8f5ff; /* Светло-голубой, акцентный фон */
+    border-radius: 12px;
+    text-align: right;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.cart-total h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0056b3;
+    margin: 0;
+}
+
+/* Медиа-запрос для адаптивности на маленьких экранах */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .cart-item h3, .cart-item p, .cart-item button {
+        flex-basis: 100%;
+        text-align: left;
+        padding: 5px 0;
+    }
+
+    .cart-item p:last-of-type {
+        margin-bottom: 10px;
+    }
+}
