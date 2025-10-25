@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
-import Aside from "./Aside/Aside";
+import Header from "./Header/Header.jsx";
+import Footer from "./Footer/Footer.jsx";
+import Aside from "./Aside/Aside.jsx";
 import "../../index.css";
 
 
