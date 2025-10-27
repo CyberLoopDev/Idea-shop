@@ -136,23 +136,14 @@ export const partnersData = {
 };
 
 export const filterOptionsData = {
-    title: "Каталог",
-    totalProducts: 53,
-    filters: [
-        { id: 'sort', name: 'Сортировка', options: ['По умолчанию', 'Сначала дешевле', 'Сначала дороже'] },
-        { id: 'price', name: 'Цена', options: ['До 1000 ₽', '1000-5000 ₽', 'От 5000 ₽'] },
-        { id: 'color', name: 'Цвет', options: ['Красный', 'Синий', 'Зеленый', 'Черный'] },
-        { id: 'country', name: 'Страна', options: ['Кыргызстан', 'Китай', 'Россия'] },
-        { id: 'label', name: 'Метка', options: ['Новинка', 'Хит', 'Скидка'] },
-        { id: 'gender', name: 'Пол', options: ['Для девочек', 'Для мальчиков'] },
-        { id: 'height', name: 'Высота предмета', options: [] },
-        { id: 'filler', name: 'Наполнитель', options: [] },
-        { id: 'frame_length', name: 'Длина рамы', options: [] },
-        { id: 'frame_material', name: 'Материал рамы', options: [] },
-         { id: 'frame_material', name: 'Материал рамы', options: [] }, 
-         { id: 'frame_material', name: 'Материал рамы', options: [] },
-          { id: 'frame_material', name: 'Материал рамы', options: [] },
-           { id: 'frame_material', name: 'Материал рамы', options: [] },
-            { id: 'frame_material', name: 'Материал рамы', options: [] },
-    ]
+  title: "Каталог",
+  filters: [
+    { id: 'sort', name: 'Сортировка', options: ['По умолчанию', 'Сначала дешевле', 'Сначала дороже'] },
+    { id: 'price', name: 'Цена', options: ['До 1000 ₽', '1000-5000 ₽', 'От 5000 ₽'] },
+    { id: 'color', name: 'Цвет', options: ['Красный', 'Синий', 'Зеленый', 'Черный'] },
+    { id: 'country_of_origin', name: 'Страна', options: ['Кыргызстан', 'Китай', 'Россия', "Германия", "Турция"] },
+    { id: 'tags', name: 'Метка', options: ['Новинка', 'Хит', 'Скидка'] },
+    { id: 'category', name: 'Категория', options: ['Для девочек', 'Для мальчиков'] },
+    { id: 'material', name: 'Материал', options: ["Пластик", "Дерево", "Картон", "Пластик и текстиль", "Текстиль", "Алюминий и текстиль", "Алюминий"]}
+  ]
 };
