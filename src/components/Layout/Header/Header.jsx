@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Header.css'
 import {NavLink} from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -19,6 +19,7 @@ import img10 from '../../../assets/10.webp'
 import img11 from '../../../assets/11.webp'
 import img12 from '../../../assets/12.webp'
 import img13 from '../../../assets/13.webp'
+import { CustomContext } from '../../../store/store';
 
 
 
@@ -27,6 +28,7 @@ const Header = () => {
   const [showForm,setShowForm] = useState(false)
   const toggleForm = () =>  setShowForm(true);
   const closeForm = () => setShowForm(false)
+  const { cartCount, favorites } = useContext(CustomContext)
 
   return (
     <header className="header">
@@ -70,9 +72,11 @@ const Header = () => {
    <img src={ProfileIcon} alt="" className="header-icon" />
    </NavLink>
     <NavLink to="/favorites" className='header-top-link'>
+    <span className='icon-count'>{ favorites.length }</span>
      <img src={FavoritesIcon} alt="" className="header-icon" />
     </NavLink>
     <NavLink to="/cart" className='header-top-link'>
+    <span className='icon-count'>{ cartCount }</span>
      <img src={CartIcon} alt="" className="header-icon" />
     </NavLink>
 </div>

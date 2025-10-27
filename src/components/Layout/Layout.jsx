@@ -5,6 +5,7 @@ import Aside from "./Aside/Aside.jsx";
 import "../../index.css";
 
 
+
 const Layout = () => {
 
     const pathes = ['/aboutus', '/news', '/details', '/payment', '/delivery', '/return', '/favorites', '/profile', '/cart'];
@@ -12,6 +13,7 @@ const Layout = () => {
     const location = useLocation();
     const isPage = pathes.includes(location.pathname) ? false : true;
 
+     
   return (
     <div className="layout">
       <header className="header">
@@ -39,6 +41,7 @@ const Layout = () => {
           <Footer />
         </div>
       </footer>
+       
     </div>
   );
 };

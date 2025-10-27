@@ -48,12 +48,13 @@
 }
 
 .cart-button {
+    position: relative;
     background-color: #7188d4;
     color: white; 
     border: none;
     padding: 10px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -66,4 +67,30 @@
 .cart-button:hover {
     background-color: #5a6fa5;
     transform: scale(1.05);
+}
+
+.count{
+    position: relative;
+    font-size: 13px;
+    top: -24px;
+    border-radius: 50%;
+    left: 49px;
+    padding: 3px;
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    background-color: #7188d4;
+}
+
+.product-tags{
+    position: absolute;
+    display: flex;
+    column-gap: 8px;
+}
+
+.product-tags span{
+    background-color: #7188d4;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
 }

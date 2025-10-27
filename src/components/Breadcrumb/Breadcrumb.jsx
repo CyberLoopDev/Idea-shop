@@ -8,7 +8,9 @@ const titles = {
   return: "Обмен и возврат",
   aboutus: "О нас",
   news: "Новости",
-  details: "Реквизиты"
+  details: "Реквизиты",
+  favorites: "Избранное",
+  cart: "Корзина"
 }
 
 const Breadcrumb = () => {

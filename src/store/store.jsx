@@ -3,54 +3,62 @@ import { createContext, useState } from "react";
 export const CustomContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-    
-    const [cart, setCart] = useState([]);
-    const [favorites, setFavorites] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
 
-    const addToCart = (product) => {
-        const isProductInCart = cart.some(item => item.id === product.id);
-        
-        if (!isProductInCart) {
-            setCart(prev => [...prev, { ...product, count: 1 }]);
-        } else {
-            setCart(prev => 
-                prev.map(item => 
-                    item.id === product.id ? { ...item, count: item.count + 1 } : item
-                )
-            );
-        }
-    };
-    
-    const removeFromCart = (id) => {
-        setCart(prev => prev.filter(item => item.id !== id));
-    };
+  const addToCart = (product) => {
+  if (!product || !product.id) return;
 
-    const toggleFavorite = (product) => {
-        const isProductInFavorites = favorites.some(item => item.id === product.id);
-        
-        if (isProductInFavorites) {
-            setFavorites(prev => prev.filter(item => item.id !== product.id));
-        } else {
-            setFavorites(prev => [...prev, product]);
-        }
-    };
+  setCart((prev) => {
+    const existingProduct = prev.find((item) => item.id === product.id);
 
-    const isFavorite = (id) => {
-        return favorites.some(item => item.id === id);
-    };
+    if (existingProduct) {
+      return prev.map((item) =>
+        item.id === product.id
+          ? { ...item, count: (item.count || 1) + 1 }
+          : item
+      );
+    } else {
+      return [...prev, { ...product, count: 1 }];
+    }
+  });
 
-    const value = {
-        cart,
-        addToCart,
-        removeFromCart,
-        favorites,
-        toggleFavorite,
-        isFavorite
-    };
+  
+  setCartCount((prevCount) => prevCount + 1);
+};
 
-    return (
-        <CustomContext.Provider value={value}>
-            {children}
-        </CustomContext.Provider>
-    );
+
+  const removeFromCart = (id) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const toggleFavorite = (product) => {
+    if (!product || !product.id) return;
+
+    setFavorites((prev) => {
+      const isFavorite = prev.some((item) => item.id === product.id);
+      return isFavorite
+        ? prev.filter((item) => item.id !== product.id)
+        : [...prev, product];
+    });
+  };
+
+  const isFavorite = (id) => favorites.some((item) => item.id === id);
+
+  const value = {
+    cart,
+    favorites,
+    cartCount,
+    addToCart,
+    removeFromCart,
+    toggleFavorite,
+    isFavorite,
+  };
+
+  return (
+    <CustomContext.Provider value={value}>
+      {children}
+    </CustomContext.Provider>
+  );
 };

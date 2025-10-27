@@ -113,9 +113,10 @@
   height: 23px;
 }
 .header-left{
+  width: 250px;
   display: flex;
   flex-direction: row;
-  column-gap: 30px;
+  column-gap: 20px;
 }.showform-overlay {
   position: fixed;
   top: 0;
@@ -227,4 +228,15 @@
   font-weight: 500;
   color: #333;
   text-align: left;
+}
+
+.icon-count{
+  /*background-color: #7188d4;*/
+  font-size: 18px;
+  width: 20px;
+  height: 20px;
+  z-index: 999;
+  top: -20px;
+  left: 35px;
+  position: relative;
 }

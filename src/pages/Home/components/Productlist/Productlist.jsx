@@ -76,10 +76,9 @@ const ProductList = () => {
         products.map((item) => (
             <ProductCard
                 key={item._id}
-                // ИСПРАВЛЕННЫЙ ВЫЗОВ: передаем полный объект с правильным ключом 'id'
                 product={{
                     ...item,
-                    id: item._id, // Меняем _id на id для соответствия Context
+                    id: item._id, 
                 }}
             />
         ))

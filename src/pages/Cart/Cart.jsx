@@ -25,7 +25,7 @@ const Cart = () => {
                             <p>Количество: {item.count}</p>
                             <p>Сумма: {item.price * item.count} руб.</p>
                             <button onClick={() => removeFromCart(item.id)}>
-                                ❌ Удалить
+                                 Удалить
                             </button>
                         </div>
                     ))
