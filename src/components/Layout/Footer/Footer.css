@@ -16,7 +16,7 @@
 }
 
 .footer__logo img {
-    height: 40px;
+    height: 70px;
 }
 
 .footer__main {
@@ -27,7 +27,7 @@
 }
 
 .footer__column-title {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
     color: #1a1a1a;
@@ -45,12 +45,12 @@
 .footer__links a {
     text-decoration: none;
     color: #555;
-    font-size: 15px;
+    font-size: 17px;
     transition: color 0.3s;
 }
 
 .footer__links a:hover {
-    color: #005bff;
+    color: #7b89d6;
 }
 
 .footer__column--contacts {
@@ -73,7 +73,7 @@
 
 .contact-info a,
 .contact-info p {
-    font-size: 15px;
+    font-size: 17px;
     text-decoration: none;
     color: #333;
     margin: 0;
@@ -95,14 +95,9 @@
     background-color: #fff;
     color: #333;
     font-size: 18px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s, color 0.3s;
+ 
 }
 
-.social-icon:hover {
-    transform: translateY(-3px);
-    color: #005bff;
-}
 
 .footer__divider {
     border: none;
@@ -136,26 +131,3 @@
     position: fixed;
 }
 
-.scroll-to-top:hover {
-    background-color: #6a78c0;
-    transform: translateY(-3px);
-}
-
-@media (max-width: 768px) {
-    .footer__main {
-        grid-template-columns: 1fr 1fr;
-        text-align: left;
-    }
-    .footer__column--contacts {
-        grid-column: 1 / -1;
-        justify-self: start;
-        text-align: left;
-    }
-    .contact-info__phones, .social-icons {
-        justify-content: flex-start;
-    }
-    .scroll-to-top {
-        bottom: 20px;
-        right: 20px;
-    }
-}

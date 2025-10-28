@@ -1,6 +1,6 @@
 
 .promo-banners {
-    padding: 40px 20px;
+    
     background-color: #fff;
     font-family: 'Inter', sans-serif;
 }
@@ -57,23 +57,3 @@
 }
 
 
-
-@media (max-width: 992px) {
-    .promo-banners__grid {
-        grid-template-columns: 1fr;
-    }
-    .promo-card__content {
-        max-width: 60%;
-    }
-}
-
-
-@media (max-width: 768px) {
-    .promo-card {
-        padding: 30px;
-        min-height: 250px;
-    }
-    .promo-card__title {
-        font-size: 28px;
-    }
-}

@@ -28,7 +28,7 @@ const Header = () => {
   const [showForm,setShowForm] = useState(false)
   const toggleForm = () =>  setShowForm(true);
   const closeForm = () => setShowForm(false)
-  const { cartCount, favorites } = useContext(CustomContext)
+const { cartCount, favorites, totalPrice } = useContext(CustomContext)
 
   return (
     <header className="header">
@@ -68,18 +68,25 @@ const Header = () => {
 
 </div>
 <div className="header-left">
-   <NavLink to="/profile" className='header-top-link'>
-   <img src={ProfileIcon} alt="" className="header-icon" />
-   </NavLink>
-    <NavLink to="/favorites" className='header-top-link'>
-    <span className='icon-count'>{ favorites.length }</span>
-     <img src={FavoritesIcon} alt="" className="header-icon" />
-    </NavLink>
-    <NavLink to="/cart" className='header-top-link'>
-    <span className='icon-count'>{ cartCount }</span>
-     <img src={CartIcon} alt="" className="header-icon" />
-    </NavLink>
+  <NavLink to="/profile" className="header-icon-wrapper">
+    <img src={ProfileIcon} alt="" className="header-icon" />
+  </NavLink>
+
+  <NavLink to="/favorites" className="header-icon-wrapper">
+    <img src={FavoritesIcon} alt="" className="header-icon" />
+    <span className="icon-count">{favorites.length}</span>
+  </NavLink>
+
+  <NavLink to="/cart" className="header-icon-wrapper ">
+    <img src={CartIcon} alt="" className="header-icon" />
+    <span className="icon-count-cart">{cartCount}</span>
+    <div className="cart-total-display">
+      <span className="total-amount">{totalPrice}</span>
+      <span className="currency-symbol">₽</span>
+    </div>
+  </NavLink>
 </div>
+
       </div>
 
 {showForm && (
@@ -88,7 +95,7 @@ const Header = () => {
       <button className="close-form" onClick={closeForm}>×</button>
 
       <div className="showform-grid">
-        {/* Первый ряд */}
+       
         <div className="row">
           <div className="item">
             <img src={img1} className="showform-img" />
@@ -112,7 +119,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Второй ряд */}
+        
         <div className="row">
           <div className="item">
             <img src={img6} className="showform-img" />
@@ -136,7 +143,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Третий ряд */}
+       
         <div className="row">
           <div className="item">
             <img src={img11} className="showform-img" />

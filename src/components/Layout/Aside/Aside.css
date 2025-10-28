@@ -1,6 +1,6 @@
 
 .sidebar {
-    width: 280px;
+    width: 100%;
     position: sticky; 
     top: 110px;      
     align-self: start;
@@ -12,42 +12,39 @@
 .sidebar-nav {
     background-color: #fff;
     border-radius: 16px;
-    padding: 10px;
     margin-bottom: 30px;
 }
 
 .sidebar-nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .sidebar-nav li a {
     display: block;
-    padding: 12px 15px;
+    padding: 12px 0;
     text-decoration: none;
     color: #333;
     font-size: 16px;
     border-radius: 8px;
-    transition: color 0.3s, background-color 0.3s;
+    transition: color 0.2s, background-color 0.2s;
 }
 
 .sidebar-nav li a:hover {
-    color: #ff0033;
-    background-color: #f4f6f9;
+    color: #7188d4;
+    
 }
 
 .sidebar-title {
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 20px;
-    padding-left: 15px;
 }
 
 .sidebar-socials .social-icons-group {
     display: flex;
     gap: 15px;
-    padding-left: 15px;
+    padding-left: 10px;
+    margin: 10px 0;
 }
 
 .social-icon {
@@ -81,7 +78,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 15px;
+    padding: 15px 0;
     background-color: #f4f6f9;
     border-radius: 12px;
     text-decoration: none;

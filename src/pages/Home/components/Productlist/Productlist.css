@@ -2,6 +2,7 @@
     display: flex;
     column-gap: 30px;
     font-size: 24px;
+    width: 100%;
 }
 
 .category-text{
@@ -19,11 +20,12 @@
 
 .products-container{
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
-    flex-wrap: wrap;
 }
 
 .category-text.active{
     border-bottom: #7188d4 3px solid;
 }
+

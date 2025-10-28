@@ -9,8 +9,9 @@ const Partners = () => {
     
 
     return (
+        <div className="container">
         <section className="partners-section">
-            <div className="container">
+        
                 <div className="partners-header">
                     <h2 className="section-title">{partnersData.title}</h2>
                     <div className="partners-swiper-nav">
@@ -46,8 +47,9 @@ const Partners = () => {
                         ))}
                     </Swiper>
                 </div>
-            </div>
+            
         </section>
+        </div>
     );
 };
 

@@ -10,7 +10,8 @@ const titles = {
   news: "Новости",
   details: "Реквизиты",
   favorites: "Избранное",
-  cart: "Корзина"
+  cart: "Корзина",
+  profile:"Личный кабинет"
 }
 
 const Breadcrumb = () => {

@@ -15,7 +15,9 @@ const Layout = () => {
 
      
   return (
+    <div className="container">
     <div className="layout">
+      
       <header className="header">
         <div className="container">
           <Header />
@@ -42,6 +44,7 @@ const Layout = () => {
         </div>
       </footer>
        
+    </div>
     </div>
   );
 };

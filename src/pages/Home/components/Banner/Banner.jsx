@@ -1,6 +1,5 @@
 import { promoBannersData } from '../../../../data/componentsData.jsx';
-import { Link } from 'react-router-dom';
-import { CustomContext } from '../../../../store/store';
+import { Link } from 'react-router-dom';    
 import './Banner.css';
 
 const PromoBanners = () => {

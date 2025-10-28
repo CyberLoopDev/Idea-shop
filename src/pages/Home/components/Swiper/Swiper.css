@@ -1,6 +1,6 @@
 
 .categories-section {
-    padding: 80px 1px;
+    padding: 20px 0;
     background-color: #fff;
     font-family: 'Inter', sans-serif;
     margin-right: 50px;
@@ -20,15 +20,13 @@
 
 .slider-wrapper {
     position: relative;
-    max-width: 1000px; 
+   max-width: 1200px;
     margin: 0 auto;
-    padding: 0 60px; 
+    display: flex;
+    justify-content: space-between;
 }
 
 
-.categories-swiper {
-    height: 300px; 
-}
 
 
 
@@ -48,7 +46,7 @@
 }
 
 .category-card__image-wrapper img {
-    width: 100%;
+    width:115%;
     height: auto;
     aspect-ratio: 1 / 1; 
     object-fit: contain; 
