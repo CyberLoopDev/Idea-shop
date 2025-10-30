@@ -1,13 +1,14 @@
 .footer {
     background-color: #E9EBF8;
-    padding: 60px 20px;
+    padding: 20px 20px;
     font-family: 'Inter', sans-serif;
     color: #333;
     position: relative;
+    width: 100%;
 }
 
 .footer-container {
-    max-width: 1240px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -20,14 +21,17 @@
 }
 
 .footer__main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
+    display: flex;
     padding-bottom: 40px;
+    justify-content: space-between;
+}
+
+.footer_main_group{
+    display: flex;
+    column-gap: 40px;
 }
 
 .footer__column-title {
-    font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
     color: #1a1a1a;
@@ -53,6 +57,10 @@
     color: #7b89d6;
 }
 
+.footer__link.active{
+    color:#7b89d6;
+}
+
 .footer__column--contacts {
     justify-self: end;
     text-align: right;
@@ -67,13 +75,11 @@
 
 .contact-info__phones {
     display: flex;
-    gap: 10px;
-    justify-content: flex-end;
+    gap: 30px;
 }
 
 .contact-info a,
 .contact-info p {
-    font-size: 17px;
     text-decoration: none;
     color: #333;
     margin: 0;
@@ -130,4 +136,5 @@
     transition: background-color 0.3s, transform 0.3s;
     position: fixed;
 }
+
 

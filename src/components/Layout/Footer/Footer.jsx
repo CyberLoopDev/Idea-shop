@@ -1,5 +1,5 @@
 import { footerData } from '../../../data/componentsData.jsx';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { CustomContext } from '../../../store/store';
 import './Footer.css';
 import { FiArrowUp } from 'react-icons/fi';
@@ -26,16 +26,28 @@ const Footer = () => {
                 </div>
 
                 <div className="footer__main">
+                    <div className="footer_main_group">
                     {footerData.columns.map((column, index) => (
                         <div key={index} className="footer__column">
                             <h4 className="footer__column-title">{column.title}</h4>
                             <ul className="footer__links">
                                 {column.links.map((link, i) => (
-                                    <li key={i}><Link to={link.url}>{link.name}</Link></li>
-                                ))}
+  <li key={i}>
+    <NavLink
+      to={link.url}
+      className={({ isActive }) =>
+        isActive ? "footer__link active" : "footer__link"
+      }
+    >
+      {link.name}
+    </NavLink>
+  </li>
+))}
+
                             </ul>
                         </div>
                     ))}
+                    </div>
 
                     <div className="footer__column footer__column--contacts">
                         <h4 className="footer__column-title">{footerData.contacts.title}</h4>

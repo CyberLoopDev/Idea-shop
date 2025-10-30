@@ -1,12 +1,12 @@
 
 .sidebar {
-    width: 100%;
-    position: sticky; 
-    top: 110px;      
+    position: sticky;     
     align-self: start;
     font-family: 'Inter', sans-serif;
     color: #333;
     margin-top: 100px;
+    display: flex;
+    top: 110px;
 }
 
 .sidebar-nav {

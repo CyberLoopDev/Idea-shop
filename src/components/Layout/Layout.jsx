@@ -8,20 +8,18 @@ import "../../index.css";
 
 const Layout = () => {
 
-    const pathes = ['/aboutus', '/news', '/details', '/payment', '/delivery', '/return', '/favorites', '/profile', '/cart'];
+    const pathes = ['/aboutus', '/news', '/details', '/payment', '/delivery', '/return', '/favorites', '/profile', '/cart', '/registration', '/restore'];
 
     const location = useLocation();
     const isPage = pathes.includes(location.pathname) ? false : true;
 
      
   return (
-    <div className="container">
+   
     <div className="layout">
       
-      <header className="header">
-        <div className="container">
+      <header className="header-grid">
           <Header />
-        </div>
       </header>
 
       <div className="main-wrapper">
@@ -38,14 +36,14 @@ const Layout = () => {
         </div>
       </div>
 
-      <footer className="footer">
-        <div className="container">
+      <footer className="footer-border">
+        
           <Footer />
-        </div>
+     
       </footer>
        
     </div>
-    </div>
+   
   );
 };
 

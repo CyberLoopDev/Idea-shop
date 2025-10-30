@@ -10,13 +10,11 @@ html, body, #root {
   font-family: "Inter";
   height: 100%;
   margin: 0;
-
 }
 
 .container {
   max-width: 1500px;
   margin: 0 auto;
-  width: 100%;
 }
 
 
@@ -30,20 +28,21 @@ html, body, #root {
     "footer""footer";
 }
 
-.header {
+.header-grid {
   grid-area: header;
   margin-bottom: 20px;
+  width: 100%;
 }
 
-.footer {
+.footer-border {
   grid-area: footer;
+  width: 100%;
 }
 
-.main-wrapper {
-  width: 100% !important;
+.main {
+  margin-left: 10px;
   grid-area: main;
-  display: flex; 
-  
+  max-width: 1298px;
 }
 
 
@@ -53,9 +52,7 @@ html, body, #root {
 }
 
 
-.aside-border{
-  width: 100%;
-}
+
 
 .aside {
   grid-area: aside;

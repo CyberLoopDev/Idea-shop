@@ -6,20 +6,8 @@ import Idealogo from '../../../assets/idea-logo.png'
 import ProfileIcon from '../../../assets/profile-icon.png'
 import FavoritesIcon from '../../../assets/favorites-icons.png'
 import CartIcon from '../../../assets/cart-icons.png'
-import img1 from '../../../assets/1.webp'
-import img2 from '../../../assets/2.webp'
-import img3 from '../../../assets/3.webp'
-import img4 from '../../../assets/4.webp'
-import img5 from '../../../assets/5.webp'
-import img6 from '../../../assets/6.webp'
-import img7 from '../../../assets/7.webp'
-import img8 from '../../../assets/8.webp'
-import img9 from '../../../assets/9.webp'
-import img10 from '../../../assets/10.webp'
-import img11 from '../../../assets/11.webp'
-import img12 from '../../../assets/12.webp'
-import img13 from '../../../assets/13.webp'
 import { CustomContext } from '../../../store/store';
+import Modal from '../../Modal/Modal';
 
 
 
@@ -31,13 +19,14 @@ const Header = () => {
 const { cartCount, favorites, totalPrice } = useContext(CustomContext)
 
   return (
+    <>
     <header className="header">
 
-<div className="container">
+
 
       <div className="header-top">
 
-
+       <div className="container top">
         <div className="header-top-links">
         <NavLink to="/payment" className='header-top-link'>Оплата</NavLink>
          <NavLink to="/delivery" className='header-top-link'>Доставка</NavLink>
@@ -48,9 +37,10 @@ const { cartCount, favorites, totalPrice } = useContext(CustomContext)
             <h2 className="header-top-info-h2">Доставка с 8:00 до 23:00   </h2>
               <a href="tel:+78008008080" className="header-top-info-phone">+7 (800) 800-80-80</a>
           </div>
-
-      </div>
-
+          </div>
+</div>
+     
+<div className="container">
       <div className="header-bottom">
         <Link to='/'>
         <img  className='header-logo' src={Idealogo} alt="" />
@@ -89,83 +79,11 @@ const { cartCount, favorites, totalPrice } = useContext(CustomContext)
 
       </div>
 
-{showForm && (
-  <div className="showform-overlay">
-    <div className="showform-box">
-      <button className="close-form" onClick={closeForm}>×</button>
-
-      <div className="showform-grid">
-       
-        <div className="row">
-          <div className="item">
-            <img src={img1} className="showform-img" />
-            <p>Для девочек</p>
-          </div>
-          <div className="item">
-            <img src={img2} className="showform-img" />
-            <p>Для мальчиков</p>
-          </div>
-          <div className="item">
-            <img src={img3} className="showform-img" />
-            <p>Для новорожденных</p>
-          </div>
-          <div className="item">
-            <img src={img4} className="showform-img" />
-            <p>Канцелярия</p>
-          </div>
-          <div className="item">
-            <img src={img5} className="showform-img" />
-            <p>Аксессуары</p>
-          </div>
-        </div>
-
-        
-        <div className="row">
-          <div className="item">
-            <img src={img6} className="showform-img" />
-            <p>Спорт</p>
-          </div>
-          <div className="item">
-            <img src={img7} className="showform-img" />
-            <p>Настольные игры</p>
-          </div>
-          <div className="item">
-            <img src={img8} className="showform-img" />
-            <p>Коляски</p>
-          </div>
-          <div className="item">
-            <img src={img9} className="showform-img" />
-            <p>Развитие</p>
-          </div>
-          <div className="item">
-            <img src={img10} className="showform-img" />
-            <p>Конструкторы</p>
-          </div>
-        </div>
-
-       
-        <div className="row">
-          <div className="item">
-            <img src={img11} className="showform-img" />
-            <p>Хиты</p>
-          </div>
-          <div className="item">
-            <img src={img12} className="showform-img" />
-            <p>Новинки</p>
-          </div>
-          <div className="item">
-            <img src={img13} className="showform-img" />
-            <p>Скидки</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
-
 
       </div>
     </header>
+ { showForm && <Modal closeForm={closeForm} /> }
+ </>
   )
 }
 

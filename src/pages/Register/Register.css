@@ -1,18 +1,18 @@
-.profile-block{
+.registration-block{
     width: 900px;
     margin-right: 550px;
     margin-bottom: 40px;
+    margin-top: 40px;
 }
 
-.profile-title {
+.registration-title {
     font-size: 26px;
     font-weight: bold; 
     color: #2d2d2d;
     margin-bottom: 40px;
-    
 }
 
-.profile-form {
+.registration-form {
     max-width: 480px;
 }
 
@@ -20,7 +20,7 @@
     margin-bottom: 25px;
 }
 
-.profile-label {
+.registration-label {
     display: block;
     font-size: 16px;
     color: #333;
@@ -31,7 +31,7 @@
     color: red;
 }
 
-.profile-input {
+.registration-input {
     width: 680px;
     height: 45px;
     padding: 6px 10px;
@@ -42,12 +42,12 @@
     box-sizing: border-box;
 }
 
-.profile-input:focus {
+.registration-input:focus {
     outline: none;
     border-color: #7188d4;
 }
 
-.profile-links-block {
+.registration-links-block {
     display: flex;
     width: 900px;
     align-items: center;
@@ -55,7 +55,7 @@
     margin-top: 20px;
 }
 
-.profile-link-btn-login{
+.registration-link-btn-login{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,16 +72,16 @@
     transition: background 0.2s;
 }
 
-.profile-link-btn-login:hover {
+.registration-link-btn-login:hover {
     background: #5a6eaa;
 }
 
-.profile-link-text {
+.registration-link-text {
     font-size: 16px;
     color: #7188d4;
     text-decoration: none;
 }
 
-.profile-link-text:hover {
+.registration-link-text:hover {
     text-decoration: underline;
 }

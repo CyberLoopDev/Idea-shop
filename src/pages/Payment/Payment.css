@@ -1,6 +1,3 @@
-.payment{
-  margin-top: 40px;
-}
 
 .title {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -9,6 +6,10 @@
   text-align: left;
   font-weight: 400;
   color: #333333; 
+}
+
+.payment-block{
+  width: 1500px;
 }
 
 .paragraph {

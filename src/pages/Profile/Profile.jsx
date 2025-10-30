@@ -5,7 +5,8 @@ import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
 const Profile = () => {
     return (
         <div className="container">
-            <Breadcrumb/>
+            <div className="profile-block">
+                <Breadcrumb/>
             
             <h2 className="profile-title">Вход в кабинет покупателя</h2>
 
@@ -37,10 +38,12 @@ const Profile = () => {
                 <div className="profile-links-block">
                     <NavLink to="/" className="profile-link-btn-login">Войти</NavLink> 
                     
-                    <NavLink to="/" className="profile-link-text">Восстановить пароль</NavLink>
-                    <NavLink to="/" className="profile-link-text">Зарегистрироваться</NavLink>
+                    <NavLink to="/restore" className="profile-link-text">Восстановить пароль</NavLink>
+                    <NavLink to="/registration" className="profile-link-text">Зарегистрироваться</NavLink>
                 </div>
             </form>
+            </div>
+            
         </div>
     )
 }

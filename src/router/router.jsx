@@ -11,6 +11,8 @@ import Profile from '../pages/Profile/Profile'
 import Cart from '../pages/Cart/Cart'
 import Favorites from '../pages/Favorites/Favorites'
 import Catalog from "../pages/Catalog/Catalog";
+import Restore from "../pages/Restore/Restore";
+import Registration from "../pages/Register/Register";
 export const router = createBrowserRouter([
     {
         element: <Layout />,
@@ -27,8 +29,10 @@ export const router = createBrowserRouter([
                 { element: <Details />, path: "details" },
                 { element: <Profile />, path: "profile" },
                 { element: <Cart />, path: "cart"} ,
-                { element: <Favorites />, path: "favorites" }
-            
+                { element: <Favorites />, path: "favorites" },
+                { element: <Restore />, path: "restore" },
+                { element: <Registration />, path: "registration" }
+
         ]
     }
 ])  

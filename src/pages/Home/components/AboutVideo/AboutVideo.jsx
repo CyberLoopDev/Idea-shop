@@ -8,7 +8,7 @@ const AboutVideo = () => {
     return (
         <>
             <section className="about-video-section">
-                <div className="container">
+                
                     <h2 className="section-title">О нас</h2>
                     
                     <div className="video-wrapper">
@@ -19,7 +19,7 @@ const AboutVideo = () => {
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                </div>
+                
             </section>
 
            

@@ -13,7 +13,7 @@ function App() {
     <RouterProvider router={router}>
 
     </RouterProvider>
-     {/* Контейнер для уведомлений */}
+    
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -22,9 +22,9 @@ function App() {
         closeOnClick
         pauseOnHover
         draggable={false}
-        limit={4} // максимум 4 уведомления
+        limit={6} 
         toastStyle={{
-          marginTop: "10px", // отступ между уведомлениями
+          marginTop: "10px", 
           borderRadius: "12px",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
         }}

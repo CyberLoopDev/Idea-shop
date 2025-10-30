@@ -4,6 +4,7 @@ const Payment = () =>{
     return (
         <div className="payment">
             <div className="container">
+                <div className="payment-block">
               <Breadcrumb />
             <h1 className="title">Оплата</h1>
 
@@ -44,6 +45,8 @@ const Payment = () =>{
             <p className="paragraph">
                 Подробнее о настройке способов оплаты, читайте в документации: <a href="https://www.insales.ru/collection/doc-payment/product/oplata" className="link">https://www.insales.ru/collection/doc-payment/product/oplata</a>
             </p>
+
+            </div>
         </div>
         </div>
         
