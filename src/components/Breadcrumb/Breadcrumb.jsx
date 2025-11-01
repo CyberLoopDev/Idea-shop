@@ -11,7 +11,9 @@ const titles = {
   details: "Реквизиты",
   favorites: "Избранное",
   cart: "Корзина",
-  profile:"Личный кабинет"
+  profile:"Личный кабинет",
+  registration: 'Регистрация',
+  register_google: "Регистрация"
 }
 
 const Breadcrumb = () => {

@@ -125,7 +125,7 @@ export const featuresData = {
 
 export const partnersData = {
     title: "Наши партнеры",
-    partners: [
+    partners: [ 
         { id: 1, name: "Rainbow", logo: partnerLogo1 },
         { id: 2, name: "AL", logo: partnerLogo2 },
         { id: 3, name: "Turboo", logo: partnerLogo3 },

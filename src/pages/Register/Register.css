@@ -85,3 +85,7 @@
 .registration-link-text:hover {
     text-decoration: underline;
 }
+
+.google-login-block{
+    margin-top: 20px;
+}

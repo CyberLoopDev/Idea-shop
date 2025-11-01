@@ -13,6 +13,7 @@ import Favorites from '../pages/Favorites/Favorites'
 import Catalog from "../pages/Catalog/Catalog";
 import Restore from "../pages/Restore/Restore";
 import Registration from "../pages/Register/Register";
+import RegisterFormGoogle from "../pages/Register/RegisterFormGoogle";
 export const router = createBrowserRouter([
     {
         element: <Layout />,
@@ -31,7 +32,8 @@ export const router = createBrowserRouter([
                 { element: <Cart />, path: "cart"} ,
                 { element: <Favorites />, path: "favorites" },
                 { element: <Restore />, path: "restore" },
-                { element: <Registration />, path: "registration" }
+                { element: <Registration />, path: "registration" },
+                { element: <RegisterFormGoogle />, path: 'register_google' },
 
         ]
     }
