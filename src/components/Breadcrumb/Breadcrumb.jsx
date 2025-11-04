@@ -13,7 +13,8 @@ const titles = {
   cart: "Корзина",
   profile:"Личный кабинет",
   registration: 'Регистрация',
-  register_google: "Регистрация"
+  register_google: "Регистрация",
+  login: "Авторизация"
 }
 
 const Breadcrumb = () => {

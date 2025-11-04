@@ -70,7 +70,7 @@ const FilteredProducts = () => {
     ) : products.length > 0 ? (
       <div className="product-grid">
         {products.map((item) => (
-          <ProductCard key={item._id || item.id} product={item} />
+          <ProductCard key={item._id || item.id} product={{...item, id: item._id}} />
         ))}
       </div>
     ) : (

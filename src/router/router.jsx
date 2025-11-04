@@ -7,13 +7,16 @@ import Return from "../pages/Return/Return";
 import AboutUs from "../pages/Aboutus/Aboutus";
 import News from "../pages/News/News";
 import Details from "../pages/Details/Details"
-import Profile from '../pages/Profile/Profile'
+import Login from '../pages/Auth/Login'
 import Cart from '../pages/Cart/Cart'
 import Favorites from '../pages/Favorites/Favorites'
 import Catalog from "../pages/Catalog/Catalog";
 import Restore from "../pages/Restore/Restore";
 import Registration from "../pages/Register/Register";
 import RegisterFormGoogle from "../pages/Register/RegisterFormGoogle";
+import Profile from "../pages/Profile/Profile";
+import PrivateRoute from "../components/PrivateRoutes/PrivateRoute.jsx";
+
 export const router = createBrowserRouter([
     {
         element: <Layout />,
@@ -28,12 +31,13 @@ export const router = createBrowserRouter([
                 { element: <AboutUs />, path: "aboutus" },
                 { element: <News />, path: "news" },
                 { element: <Details />, path: "details" },
-                { element: <Profile />, path: "profile" },
+                { element: <Login />, path: "login" },
                 { element: <Cart />, path: "cart"} ,
                 { element: <Favorites />, path: "favorites" },
                 { element: <Restore />, path: "restore" },
                 { element: <Registration />, path: "registration" },
                 { element: <RegisterFormGoogle />, path: 'register_google' },
+                { element: <PrivateRoute><Profile /></PrivateRoute>, path: "profile" }
 
         ]
     }
