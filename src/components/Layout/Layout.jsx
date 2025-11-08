@@ -8,7 +8,7 @@ import "../../index.css";
 
 const Layout = () => {
 
-    const pathes = ['/aboutus', '/news', '/details', '/payment', '/delivery', '/return', '/favorites', '/profile', '/cart', '/registration', '/restore', '/register_google', '/login'];
+    const pathes = ['/aboutus', '/news', '/details', '/payment', '/delivery', '/return', '/favorites', '/profile', '/cart', '/registration', '/restore', '/register_google', '/login', '/orders'];
 
     const location = useLocation();
     const isPage = pathes.includes(location.pathname) ? false : true;

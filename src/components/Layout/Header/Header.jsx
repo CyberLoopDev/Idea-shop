@@ -46,7 +46,7 @@ const { cartCount, favorites, totalPrice } = useContext(CustomContext)
         <img  className='header-logo' src={Idealogo} alt="" />
         </Link>
         <button className="header-catalog-bth" onClick={toggleForm} >&#9776; Каталог</button>
-        <div class="search-bar">
+        <div className="search-bar">
   <input type="text" placeholder="Поиск" />
   <button type="submit" class="search-button">
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">

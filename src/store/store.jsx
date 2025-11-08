@@ -73,16 +73,19 @@ export const ContextProvider = ({ children }) => {
 
 
   const addToCart = (product) => {
-    if (!product || !product.id) return;
-    setCart((prev) => {
-      const existing = prev.find(p => p.id === product.id);
-      if (existing) {
-        return prev.map(p => p.id === product.id ? { ...p, count: (p.count||1) + 1 } : p);
-      }
-      return [...prev, { ...product, count: 1 }];
-    });
-    setCartCount(c => c + 1);
-  };
+  if (!product || !product._id) return; // <-- используй _id
+  setCart((prev) => {
+    const existing = prev.find(p => p._id === product._id);
+    if (existing) {
+      return prev.map(p => p._id === product._id ? { ...p, count: (p.count||1) + 1 } : p);
+    }
+    return [...prev, { ...product, count: 1 }];
+  });
+  setCartCount(c => c + 1);
+};
+
+ 
+
 
   const removeFromCart = (id) => setCart(prev => prev.filter(p => p.id !== id));
 
@@ -93,7 +96,7 @@ export const ContextProvider = ({ children }) => {
 
   const isFavorite = (id) => favorites.some(p => p.id === id);
 
-  const value = { filter, setFilter, getAllProducts, cart, favorites, cartCount, addToCart, removeFromCart, toggleFavorite, isFavorite };
+  const value = {setCart, filter, setFilter, getAllProducts, cart, favorites, cartCount, addToCart, removeFromCart, toggleFavorite, isFavorite };
 
   return <CustomContext.Provider value={value}>{children}</CustomContext.Provider>;
 };

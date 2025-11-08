@@ -76,6 +76,20 @@
     background: #5a6eaa;
 }
 
+.registration-btn{
+    padding: 10px 20px;
+    border: none;
+    background-color: #7188d4;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.1s;
+}
+
+.registration-btn:hover{
+    background-color: #7188d4ce;
+}
+
 .registration-link-text {
     font-size: 16px;
     color: #7188d4;

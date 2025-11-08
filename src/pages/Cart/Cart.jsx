@@ -3,10 +3,12 @@ import { CustomContext } from '../../store/store';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import defaultImg from '../../assets/tovar_dlya_prodazhi.jpg';
 import './Cart.css';
+import { Link } from 'react-router-dom';
+
 
 const Cart = () => {
   const { cart, removeFromCart } = useContext(CustomContext);
-  const [showModal, setShowModal] = useState(false);
+  
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.count, 0);
 
@@ -43,21 +45,15 @@ const Cart = () => {
       {cart.length > 0 && (
         <div className="cart-total">
           <h2>Общая стоимость: {totalPrice} руб.</h2>
-          <button className="checkout-btn" onClick={() => setShowModal(true)}>
+          <Link to='/orders'>
+          <button className="checkout-btn" >
             Перейти к оформлению
           </button>
+          </Link>
         </div>
       )}
 
-      {showModal && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal" onClick={e => e.stopPropagation()}>
-            <h3>Оформление заказа</h3>
-            <p>Здесь будет форма или информация для оформления заказа.</p>
-            <button onClick={() => setShowModal(false)}>Закрыть</button>
-          </div>
-        </div>
-      )}
+     
     </div>
   );
 };

@@ -90,7 +90,7 @@ export const footerData = {
             links: [
                 { name: "Оплата", url: "/payment" },
                 { name: "Доставка", url: "/delivery" },
-                { name: "Обмен и возврат", url: "/returns" },
+                { name: "Обмен и возврат", url: "/return" },
             ]
         }
     ],

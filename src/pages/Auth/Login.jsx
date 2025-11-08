@@ -18,7 +18,7 @@ const Login = () => {
     const showToast = (text) => {
                 toast.success(text , {
                   position: "top-right",
-                  autoClose: 500,
+                  autoClose: 1000,
                   hideProgressBar: true,
                   closeOnClick: true,
                   pauseOnHover: true,
@@ -98,18 +98,32 @@ const Login = () => {
             </form>
             <div className="google-login-block">
                 <GoogleLogin 
-                onSuccess={(credentialResponse) => {
-                    console.log('Google login success: ', credentialResponse);
-                    
-                }}
-                onError={() => {
-                    console.log('Google login failed');
-                    
-                }} 
-                 theme="filled_blue"   
-                 size="large"       
-                 shape="rectangular"     
-                 width="280" />
+                        onSuccess={async (credentialResponse) => {
+                            const { credential } = credentialResponse
+                            try {
+                                const res = await axios.post('http://localhost:3000/auth/google', { credential })
+                                console.log(res.data)
+                              
+                                localStorage.setItem('token', res.data.jwt)
+                                localStorage.setItem('user', JSON.stringify(res.data.user))
+                                  if (res.data.needsProfile) {
+                                        showToast("Добро пожаловать! Завершите регистрацию профиля");
+                                        navigate('/register_google');
+                                    } else {
+                                         showToast("Вход через Google успешен!");
+                                        navigate('/profile');
+                                        }
+                                
+                            } catch(err) {
+                                showToast('Ошибка Google Login')
+                            }
+                        }}
+                        onError={() => showToast('Google login failed')}
+                        theme="filled_blue"
+                        size="large"
+                        shape="rectangular"
+                        width="280"
+                    />
             </div>
             </div>
             

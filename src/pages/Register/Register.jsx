@@ -32,12 +32,14 @@ const Registration = () => {
             setLoading(false)
 
             if (res.data.type === 'success') {
+                console.log(res.data);
+                
                 localStorage.setItem('token', res.data.jwt)
                 localStorage.setItem('user', JSON.stringify(res.data.user))
                 showToast('Регистрация успешна!')
                 navigate('/profile')
             } else {
-                showToast(res.data.message)
+                showToast(res.data.message) 
             }
         } catch (err) {
             setLoading(false)
@@ -136,10 +138,18 @@ const Registration = () => {
                             const { credential } = credentialResponse
                             try {
                                 const res = await axios.post('http://localhost:3000/auth/google', { credential })
+                                console.log(res.data)
+                              
                                 localStorage.setItem('token', res.data.jwt)
                                 localStorage.setItem('user', JSON.stringify(res.data.user))
-                                showToast('Вход через Google успешен')
-                                navigate('/profile')
+                                  if (res.data.needsProfile) {
+                                        showToast("Добро пожаловать! Завершите регистрацию профиля");
+                                        navigate('/register_google');
+                                    } else {
+                                         showToast("Вход через Google успешен!");
+                                        navigate('/profile');
+                                        }
+                                
                             } catch(err) {
                                 showToast('Ошибка Google Login')
                             }
