@@ -6,15 +6,16 @@ import { toast } from 'react-toastify'
 
 const Restore = () => {
     const [step, setStep] = useState(1)
-    const [email, setEmail] = useState('')
+    const [gmail, setGmail] = useState('')
     const [code, setCode] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    // 1️⃣ Отправка кода
     const handleEmailSubmit = async (e) => {
         e.preventDefault()
-        if (!email) {
-            toast.error('Пожалуйста, введите ваш email')
+        if (!gmail) {
+            toast.error('Введите email')
             return
         }
 
@@ -22,14 +23,15 @@ const Restore = () => {
             const res = await fetch('http://localhost:3000/auth/restore_password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
+                body: JSON.stringify({ gmail })
             })
             const data = await res.json()
+
             if (res.ok) {
-                toast.success('Код отправлен на вашу почту')
+                toast.success('Код отправлен на почту')
                 setStep(2)
             } else {
-                toast.error(data.message || 'Ошибка отправки кода')
+                toast.error(data.message || 'Ошибка при отправке кода')
             }
         } catch (err) {
             console.error(err)
@@ -37,10 +39,40 @@ const Restore = () => {
         }
     }
 
-    const handleCodeSubmit = async (e) => {
+    // 2️⃣ Проверка кода
+    const handleCodeVerify = async (e) => {
         e.preventDefault()
-        if (!code || !newPassword || !confirmPassword) {
-            toast.error('Заполните все поля')
+        if (!code) {
+            toast.error('Введите код из письма')
+            return
+        }
+
+        try {
+            const res = await fetch('http://localhost:3000/auth/restore_password/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ gmail, code })
+            })
+            const data = await res.json()
+
+            if (res.ok) {
+                toast.success('Код подтверждён, теперь введите новый пароль')
+                setStep(3)
+            } else {
+                toast.error(data.message || 'Неверный или просроченный код')
+            }
+        } catch (err) {
+            console.error(err)
+            toast.error('Ошибка соединения с сервером')
+        }
+    }
+
+    // 3️⃣ Смена пароля
+    const handlePasswordChange = async (e) => {
+        e.preventDefault()
+
+        if (!newPassword || !confirmPassword) {
+            toast.error('Введите новый пароль и подтверждение')
             return
         }
         if (newPassword !== confirmPassword) {
@@ -49,16 +81,17 @@ const Restore = () => {
         }
 
         try {
-            const res = await fetch('http://localhost:3000/auth/restore_password/verify', {
+            const res = await fetch('http://localhost:3000/auth/restore_password/new', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, code, newPassword })
+                body: JSON.stringify({ gmail, newPassword })
             })
             const data = await res.json()
+
             if (res.ok) {
                 toast.success('Пароль успешно изменён!')
                 setStep(1)
-                setEmail('')
+                setGmail('')
                 setCode('')
                 setNewPassword('')
                 setConfirmPassword('')
@@ -77,23 +110,23 @@ const Restore = () => {
                 <Breadcrumb />
                 <h2 className="restore-title">Восстановление пароля</h2>
 
+                {/* 1️⃣ Шаг — ввод email */}
                 {step === 1 && (
                     <form className="restore-form" onSubmit={handleEmailSubmit}>
                         <div className="form-group">
-                            <label htmlFor="email" className="restore-label">
+                            <label htmlFor="gmail" className="restore-label">
                                 Email <span className="required-star">*</span>
                             </label>
                             <input
                                 type="email"
-                                id="email"
+                                id="gmail"
                                 className="restore-input"
+                                value={gmail}
+                                onChange={(e) => setGmail(e.target.value)}
                                 required
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Введите ваш email"
                             />
                         </div>
-
                         <div className="restore-links-block">
                             <button type="submit" className="restore-link-btn-login">
                                 Отправить код
@@ -105,8 +138,9 @@ const Restore = () => {
                     </form>
                 )}
 
+                {/* 2️⃣ Шаг — проверка кода */}
                 {step === 2 && (
-                    <form className="restore-form" onSubmit={handleCodeSubmit}>
+                    <form className="restore-form" onSubmit={handleCodeVerify}>
                         <div className="form-group">
                             <label htmlFor="code" className="restore-label">
                                 Код восстановления <span className="required-star">*</span>
@@ -115,13 +149,30 @@ const Restore = () => {
                                 type="text"
                                 id="code"
                                 className="restore-input"
-                                required
                                 value={code}
                                 onChange={(e) => setCode(e.target.value)}
+                                required
                                 placeholder="Введите код из письма"
                             />
                         </div>
+                        <div className="restore-links-block">
+                            <button type="submit" className="restore-link-btn-login">
+                                Проверить код
+                            </button>
+                            <button
+                                type="button"
+                                className="restore-link-text"
+                                onClick={() => setStep(1)}
+                            >
+                                Назад
+                            </button>
+                        </div>
+                    </form>
+                )}
 
+                {/* 3️⃣ Шаг — смена пароля */}
+                {step === 3 && (
+                    <form className="restore-form" onSubmit={handlePasswordChange}>
                         <div className="form-group">
                             <label htmlFor="newPassword" className="restore-label">
                                 Новый пароль <span className="required-star">*</span>
@@ -130,13 +181,12 @@ const Restore = () => {
                                 type="password"
                                 id="newPassword"
                                 className="restore-input"
-                                required
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
+                                required
                                 placeholder="Введите новый пароль"
                             />
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="confirmPassword" className="restore-label">
                                 Подтверждение пароля <span className="required-star">*</span>
@@ -145,20 +195,23 @@ const Restore = () => {
                                 type="password"
                                 id="confirmPassword"
                                 className="restore-input"
-                                required
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
                                 placeholder="Повторите пароль"
                             />
                         </div>
-
                         <div className="restore-links-block">
                             <button type="submit" className="restore-link-btn-login">
                                 Сменить пароль
                             </button>
-                            <NavLink to="/login" className="restore-link-text">
+                            <button
+                                type="button"
+                                className="restore-link-text"
+                                onClick={() => setStep(1)}
+                            >
                                 Отмена
-                            </NavLink>
+                            </button>
                         </div>
                     </form>
                 )}
