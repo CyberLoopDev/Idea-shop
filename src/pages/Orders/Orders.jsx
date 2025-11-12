@@ -6,7 +6,7 @@ import defaultImg from '../../assets/tovar_dlya_prodazhi.jpg'
 import './Order.css'
 
 const Orders = () => {
-  const { cart, setCart } = useContext(CustomContext)
+  const { cart, setCart, setCartCount } = useContext(CustomContext)
   const navigate = useNavigate()
   const [form, setForm] = useState({
     city: '',
@@ -47,7 +47,10 @@ const Orders = () => {
     }))
   }
 
-  const clearCart = () => setCart([])
+  const clearCart = () => {
+    setCart([])
+    setCartCount(0)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()

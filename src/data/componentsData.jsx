@@ -24,6 +24,10 @@ import partnerLogo2 from '../assets/partnerLogo2.jpg';
 import partnerLogo3 from '../assets/partnerLogo3.jpg';
 import partnerLogo4 from '../assets/partnerLogo4.jpg';
 import partnerLogo5 from '../assets/partnerLogo5.jpg'; 
+import news1 from '../assets/news1.webp'
+import news2 from '../assets/news2.webp'
+import news3 from '../assets/news3.webp'
+
 
 
 export const categoriesData = {
@@ -147,3 +151,31 @@ export const filterOptionsData = {
     { id: 'material', name: 'Материал', options: ["Пластик", "Дерево", "Картон", "Пластик и текстиль", "Текстиль", "Алюминий и текстиль", "Алюминий"]}
   ]
 };
+
+
+export const newsItems = [
+  {
+    id: 1,
+    date: '31.07.25',
+    title: 'Плюсы и минусы школьной формы',
+    description: 'Третья статья вашего блога.',
+    tags: ['#Детская одежда', '#Выбор одежды', '#Одежда для девочек'],
+    image: news1
+  },
+  {
+    id: 2,
+    date: '08.08.25',
+    title: 'Первая одежда для малышей',
+    description: 'А это уже вторая новость в интернет-магазине.',
+    tags: ['#Детская одежда', '#Стирка', '#Уход'],
+    image: news2,
+  },
+  {
+    id: 3,
+    date: '21.09.25',
+    title: 'Здоровое питание для подростков',
+    description: 'Поздравляем! Это первая новость в интернет-магазине.',
+    tags: ['#Детская одежда', '#Выбор одежды', '#Качество'],
+    image: news3,
+  },
+];

@@ -17,6 +17,7 @@ import RegisterFormGoogle from "../pages/Register/RegisterFormGoogle";
 import Profile from "../pages/Profile/Profile";
 import PrivateRoute from "../components/PrivateRoutes/PrivateRoute.jsx";
 import Orders from "../pages/Orders/Orders.jsx";
+import ProductMoreInfo from "../components/ProductMoreInfo/ProductMoreInfo.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
                 { element: <Payment />, path: "payment" },
                 { element: <Return />, path: "return" },
                 { element: <AboutUs />, path: "aboutus" },
-                { element: <News />, path: "news" },    
+               { element: <News />, path: 'news' },    
                 { element: <Details />, path: "details" },
                 { element: <Login />, path: "login" },
                 { element: <Cart />, path: "cart"} ,
@@ -39,7 +40,8 @@ export const router = createBrowserRouter([
                 { element: <Registration />, path: "registration" },
                 { element: <RegisterFormGoogle />, path: 'register_google' },
                 { element: <PrivateRoute><Profile /></PrivateRoute>, path: "profile" },
-                { element: <PrivateRoute><Orders /></PrivateRoute>, path: 'orders' }
+                { element: <PrivateRoute><Orders /></PrivateRoute>, path: 'orders' },
+                { element: <ProductMoreInfo />, path: '/product/:id' }
 
         ]
     }

@@ -5,12 +5,15 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { CustomContext } from "../../store/store";
 import defaultImg from "../../assets/tovar_dlya_prodazhi.jpg";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const { id, name, imgUrl, price, tags } = product;
   const { addToCart, toggleFavorite, isFavorite } = useContext(CustomContext);
   const [count, setCount] = useState(0);
   const isFav = isFavorite(id);
+
+  const navigate = useNavigate()
 
   const showToast = (text) => {
     toast.success(text , {
@@ -34,6 +37,7 @@ const ProductCard = ({ product }) => {
       <img
         src={imgUrl || defaultImg}
         alt={name}
+        onClick={() => navigate(`/product/${product.id}`)}
         onError={(e) => {
           e.target.onerror = null;
           e.target.src = defaultImg;
