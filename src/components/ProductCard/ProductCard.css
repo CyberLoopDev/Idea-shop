@@ -2,6 +2,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+   
+  height: 320px; 
     border-radius: 8px;
     padding: 10px;
     background: #d5d8d4e3;
@@ -10,10 +12,25 @@
     transition: box-shadow 0.3s ease;
 }
 
-.product-img{
-    width: 100%; 
-    height: 100%;
-   
+
+
+.product-img {
+  width: 100%;
+  height: 240px; /* фиксированная высота для единообразия */
+  object-fit: contain; /* сохраняет пропорции, полностью помещает картинку */
+  background-color: #fff; /* фон если есть прозрачность */
+  border-radius: 6px;
+  padding: 5px;
+  transition: transform 0.2s ease;
+  margin-bottom: auto;
+}
+
+.product-img:hover {
+  transform: scale(1.05);
+}
+
+.product-title{
+    margin-top: auto;
 }
 
 .group{
@@ -21,7 +38,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: auto;
+    height: 30px;
 }
 
 .cart-icon{

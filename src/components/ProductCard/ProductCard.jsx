@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const { id, name, imgUrl, price, tags } = product;
+  const { id, name, img, price, tags } = product;
   const { addToCart, toggleFavorite, isFavorite } = useContext(CustomContext);
   const [count, setCount] = useState(0);
   const isFav = isFavorite(id);
@@ -29,13 +29,14 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product-card">
+      
         <div className="product-tags">
             {tags.map(item => (
                 <span key={item} >{item}</span>    
             ))}
         </div>
       <img
-        src={imgUrl || defaultImg}
+        src={img || defaultImg}
         alt={name}
         onClick={() => navigate(`/product/${product.id}`)}
         onError={(e) => {
@@ -52,9 +53,11 @@ const ProductCard = ({ product }) => {
         {isFav ? <FaHeart size={20} color="red" /> : <FaRegHeart size={20} />}
       </button>
 
-      <p className="product-title">{name}</p>
+     
 
-      <p className="group">
+      
+         <p className="product-title">{name}</p>
+         <p className="group">    
         <span className="product-price">{price} ₽</span>
         <span className="cart-icon">
           <span className="count">{count}</span>
