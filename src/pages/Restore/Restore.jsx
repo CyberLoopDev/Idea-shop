@@ -1,8 +1,10 @@
 import './Restore.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { BiLoaderAlt, BiLoaderCircle } from 'react-icons/bi'
+import { LuLoaderCircle } from 'react-icons/lu'
 
 const Restore = () => {
     const [step, setStep] = useState(1)
@@ -10,9 +12,12 @@ const Restore = () => {
     const [code, setCode] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [loading, setLoading] = useState(false)
+    
+    const navigate = useNavigate()
 
-    // 1️⃣ Отправка кода
     const handleEmailSubmit = async (e) => {
+       
         e.preventDefault()
         if (!gmail) {
             toast.error('Введите email')
@@ -20,13 +25,14 @@ const Restore = () => {
         }
 
         try {
+             setLoading(true)
             const res = await fetch('http://localhost:3000/auth/restore_password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ gmail })
             })
             const data = await res.json()
-
+            setLoading(false)
             if (res.ok) {
                 toast.success('Код отправлен на почту')
                 setStep(2)
@@ -39,7 +45,6 @@ const Restore = () => {
         }
     }
 
-    // 2️⃣ Проверка кода
     const handleCodeVerify = async (e) => {
         e.preventDefault()
         if (!code) {
@@ -48,12 +53,14 @@ const Restore = () => {
         }
 
         try {
+            setLoading(true)
             const res = await fetch('http://localhost:3000/auth/restore_password/verify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ gmail, code })
             })
             const data = await res.json()
+            setLoading(false)
 
             if (res.ok) {
                 toast.success('Код подтверждён, теперь введите новый пароль')
@@ -67,8 +74,9 @@ const Restore = () => {
         }
     }
 
-    // 3️⃣ Смена пароля
+    
     const handlePasswordChange = async (e) => {
+
         e.preventDefault()
 
         if (!newPassword || !confirmPassword) {
@@ -80,6 +88,8 @@ const Restore = () => {
             return
         }
 
+        setLoading(true)
+
         try {
             const res = await fetch('http://localhost:3000/auth/restore_password/new', {
                 method: 'POST',
@@ -88,6 +98,8 @@ const Restore = () => {
             })
             const data = await res.json()
 
+            setLoading(false)
+
             if (res.ok) {
                 toast.success('Пароль успешно изменён!')
                 setStep(1)
@@ -95,6 +107,7 @@ const Restore = () => {
                 setCode('')
                 setNewPassword('')
                 setConfirmPassword('')
+                navigate('/login')
             } else {
                 toast.error(data.message || 'Ошибка при смене пароля')
             }
@@ -110,7 +123,7 @@ const Restore = () => {
                 <Breadcrumb />
                 <h2 className="restore-title">Восстановление пароля</h2>
 
-                {/* 1️⃣ Шаг — ввод email */}
+                
                 {step === 1 && (
                     <form className="restore-form" onSubmit={handleEmailSubmit}>
                         <div className="form-group">
@@ -128,8 +141,8 @@ const Restore = () => {
                             />
                         </div>
                         <div className="restore-links-block">
-                            <button type="submit" className="restore-link-btn-login">
-                                Отправить код
+                            <button disabled={loading} type="submit" className="restore-link-btn-login">
+                                {loading ? <BiLoaderAlt /> : 'Отправить код'}
                             </button>
                             <NavLink to="/login" className="restore-link-text">
                                 Я вспомнил(-а) пароль!
@@ -138,7 +151,7 @@ const Restore = () => {
                     </form>
                 )}
 
-                {/* 2️⃣ Шаг — проверка кода */}
+              
                 {step === 2 && (
                     <form className="restore-form" onSubmit={handleCodeVerify}>
                         <div className="form-group">
@@ -156,8 +169,8 @@ const Restore = () => {
                             />
                         </div>
                         <div className="restore-links-block">
-                            <button type="submit" className="restore-link-btn-login">
-                                Проверить код
+                            <button disabled={loading} type="submit" className="restore-link-btn-login">
+                                {loading ? <LuLoaderCircle /> : 'Проверить код'}
                             </button>
                             <button
                                 type="button"
@@ -170,7 +183,7 @@ const Restore = () => {
                     </form>
                 )}
 
-                {/* 3️⃣ Шаг — смена пароля */}
+               
                 {step === 3 && (
                     <form className="restore-form" onSubmit={handlePasswordChange}>
                         <div className="form-group">
@@ -202,8 +215,8 @@ const Restore = () => {
                             />
                         </div>
                         <div className="restore-links-block">
-                            <button type="submit" className="restore-link-btn-login">
-                                Сменить пароль
+                            <button disabled={loading} type="submit" className="restore-link-btn-login">
+                                {loading ? <BiLoaderCircle /> : 'Сменить пароль' }
                             </button>
                             <button
                                 type="button"

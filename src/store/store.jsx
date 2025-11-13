@@ -1,4 +1,5 @@
 
+import axios from 'axios'
 import { createContext, useState, useEffect, useMemo } from 'react'
 
 export const CustomContext = createContext()
@@ -72,53 +73,70 @@ export const ContextProvider = ({ children }) => {
     [cart]
   )
 
-  const getAllProducts = async (currentPage = 1, limit = 10) => {
-    try {
-      const params = {}
-      if (filter.category) params.category = filter.category
-      if (filter.color) params.color = filter.color
-      if (filter.material) params.material = filter.material
-      if (filter.country_of_origin)
-        params.country_of_origin = filter.country_of_origin
+  const getAllProducts = async (filter, currentPage = 1, limit = 10) => {
+  try {
+    const params = {}
 
-      if (filter.price === 'До 1000 ₽') params.maxPrice = 1000
-      if (filter.price === '1000-5000 ₽') {
-        params.minPrice = 1000
-        params.maxPrice = 5000
-      }
-      if (filter.price === 'От 5000 ₽') params.minPrice = 5000
+    if (filter.category) params.category = filter.category
+    if (filter.color) params.color = filter.color
+    if (filter.material) params.material = filter.material
+    if (filter.country_of_origin) params.country_of_origin = filter.country_of_origin
 
-      if (filter.minWeight) params.minWeight = filter.minWeight
-      if (filter.maxWeight) params.maxWeight = filter.maxWeight
-      if (filter.minRating) params.minRating = filter.minRating
-      if (filter.maxRating) params.maxRating = filter.maxRating
-      if (filter.tags?.length) params.tags = filter.tags.join(',')
-      if (filter.search) params.q = filter.search
-
-      if (filter.sort) {
-        const sortMap = {
-          'По умолчанию': '',
-          'Сначала дешевле': 'price-asc',
-          'Сначала дороже': 'price-desc',
-        }
-        params.sort = sortMap[filter.sort]
-      }
-
-      params._page = currentPage
-      params._limit = limit
-
-      const query = new URLSearchParams(params).toString()
-      const res = await fetch(`http://localhost:3000/products?${query}`)
-      if (!res.ok) throw new Error('Ошибка запроса')
-      const data = await res.json()
-      const totalCount = res.headers.get('X-Total-Count')
-
-      return { products: data, totalCount: parseInt(totalCount, 10) }
-    } catch (err) {
-      console.error('Ошибка при получении продуктов:', err)
-      return { products: [], totalCount: 0 }
+    if (filter.price === 'До 1000 ₽') params.maxPrice = 1000
+    if (filter.price === '1000-5000 ₽') {
+      params.minPrice = 1000
+      params.maxPrice = 5000
     }
+    if (filter.price === 'От 5000 ₽') params.minPrice = 5000
+
+    if (filter.minWeight) params.minWeight = filter.minWeight
+    if (filter.maxWeight) params.maxWeight = filter.maxWeight
+    if (filter.minRating) params.minRating = filter.minRating
+    if (filter.maxRating) params.maxRating = filter.maxRating
+
+    if (filter.tags?.length) params.tags = filter.tags.join(',')
+    if (filter.search) params.q = filter.search
+
+    if (filter.sort) {
+      const sortMap = {
+        'По умолчанию': '',
+        'Сначала дешевле': 'price-asc',
+        'Сначала дороже': 'price-desc',
+      }
+      params.sort = sortMap[filter.sort]
+    }
+
+    params.page = currentPage
+    params.limit = limit
+
+    const query = new URLSearchParams(params).toString()
+    const res = await fetch(`http://localhost:3000/products?${query}`)
+
+    if (!res.ok) throw new Error('Ошибка загрузки товаров')
+
+    const data = await res.json()
+
+    // ⚙️ ТВОЙ формат данных, как в Postman:
+    if (data.products && data.pagination) {
+      return {
+        products: data.products,
+        pagination: {
+          currentPage: data.pagination.currentPage || 1,
+          totalPages: data.pagination.totalPages || 1,
+          totalProducts: data.pagination.totalProducts || 0,
+          limit: data.pagination.limit || 10,
+        },
+      }
+    }
+
+    console.warn('⚠️ Неожиданный ответ от сервера:', data)
+    return { products: [], pagination: { currentPage: 1, totalPages: 1, totalProducts: 0, limit } }
+  } catch (error) {
+    console.error('Ошибка при получении продуктов:', error)
+    return { products: [], pagination: { currentPage: 1, totalPages: 1, totalProducts: 0, limit } }
   }
+}
+
 
   const getProductById = async (id) => {
     try {
