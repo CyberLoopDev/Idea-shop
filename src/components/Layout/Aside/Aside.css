@@ -121,3 +121,7 @@
     font-size: 16px;
     font-weight: 700;
 }
+
+.active{
+    color: #F7931E;
+}

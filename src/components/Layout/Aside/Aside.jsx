@@ -1,5 +1,5 @@
 import { categoriesData, sidebarData } from '../../../data/componentsData.jsx';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Aside.css';
 
 const Sidebar = () => {
@@ -14,7 +14,7 @@ const Sidebar = () => {
                 <ul>
                     {categoriesData.items.map((category, index) => (
                         <li key={index}>
-                            <Link to={category.url}>{category.name}</Link>
+                            <NavLink to={category.url}>{category.name}</NavLink>
                         </li>
                     ))}
                 </ul>

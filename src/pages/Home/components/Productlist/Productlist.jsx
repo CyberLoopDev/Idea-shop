@@ -2,6 +2,7 @@ import ProductCard from "../../../../components/ProductCard/ProductCard";
 import "./ProductList.css";
 import { useEffect, useState } from "react";
 import axios from "axios"; 
+import { BiLoaderCircle } from "react-icons/bi";
 
 const ProductList = () => {
   const [active, setActive] = useState(0);
@@ -83,13 +84,13 @@ const ProductList = () => {
             />
         ))
     ) : (
-        <p>загрузка</p>
+        <p className="loader"><BiLoaderCircle size={20} /></p>
     )}
 </div>
 
        
-        <div className="pagination" style={{ marginTop: "20px", textAlign: "center" }}>
-          <button
+       { !loading && <div className="pagination" style={{ marginTop: "20px", textAlign: "center" }}>
+          <button  className="pagination-btn"
             onClick={() => handlePageChange(pagination.currentPage - 1)}
             disabled={pagination.currentPage === 1}
             style={{ marginRight: "10px" }}
@@ -99,14 +100,14 @@ const ProductList = () => {
           <span>
             Страница {pagination.currentPage} из {pagination.totalPages}
           </span>
-          <button
+          <button className="pagination-btn"
             onClick={() => handlePageChange(pagination.currentPage + 1)}
             disabled={pagination.currentPage === pagination.totalPages}
             style={{ marginLeft: "10px" }}
           >
             Следующая
           </button>
-        </div>
+        </div> }
       </div>
     </div>
   );

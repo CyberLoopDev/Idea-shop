@@ -203,6 +203,7 @@ export const ContextProvider = ({ children }) => {
     setFilter,
     getAllProducts,
     getProductById,
+    setCart,
     cart,
     favorites,
     cartCount,

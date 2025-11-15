@@ -6,7 +6,7 @@ import defaultImg from '../../assets/tovar_dlya_prodazhi.jpg'
 import './Order.css'
 
 const Orders = () => {
-  const { cart, setCart, setCartCount } = useContext(CustomContext)
+  const { cart, setCart} = useContext(CustomContext)
   const navigate = useNavigate()
   const [form, setForm] = useState({
     city: '',
@@ -49,7 +49,6 @@ const Orders = () => {
 
   const clearCart = () => {
     setCart([])
-    setCartCount(0)
   }
 
   const handleSubmit = async (e) => {
@@ -62,7 +61,10 @@ const Orders = () => {
 
     try {
 
-      const { full_name } = JSON.parse(localStorage.getItem('user'))
+      const user = await JSON.parse(localStorage.getItem('user'))
+
+      console.log(user.full_name);
+      
 
       const res = await fetch('http://localhost:3000/orders', {
         method: 'POST',
@@ -74,7 +76,7 @@ const Orders = () => {
           userId,
           phone: userPhone,
           email: userEmail,
-          full_name:  full_name,
+          full_name:  user.full_name,
           address: form.address,
           comment: form.comment,
           payment: form.payment,
@@ -233,7 +235,7 @@ const Orders = () => {
             cart.map(item => (
               <div key={item._id || item.name} className="summary-item">
                 <img
-                  src={item.imgUrl || defaultImg}
+                  src={item.img || defaultImg}
                   alt={item.title}
                   onError={e => { e.target.onerror = null; e.target.src = defaultImg }}
                   className="summary-item-image"

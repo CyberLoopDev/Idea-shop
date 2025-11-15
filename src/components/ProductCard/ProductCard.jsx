@@ -11,68 +11,72 @@ const ProductCard = ({ product }) => {
   const { id, name, img, price, tags } = product;
   const { addToCart, toggleFavorite, isFavorite } = useContext(CustomContext);
   const [count, setCount] = useState(0);
+
+  const navigate = useNavigate();
   const isFav = isFavorite(id);
 
-  const navigate = useNavigate()
-
   const showToast = (text) => {
-    toast.success(text , {
-      position: "top-right",
+    toast.success(text, {
       autoClose: 500,
       hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
       theme: "light",
     });
   };
 
   return (
     <div className="product-card">
-      
-        <div className="product-tags">
-            {tags.map(item => (
-                <span key={item} >{item}</span>    
-            ))}
-        </div>
-      <img
-        src={img || defaultImg}
-        alt={name}
-        onClick={() => navigate(`/product/${product.id}`)}
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = defaultImg;
-        }}
-        className="product-img"
-      />
 
-      <button className="favorite-btn" onClick={ () => {
-         toggleFavorite(product)
-        showToast(`${!isFav ? 'Успешно добавлено' : 'Успешно удалено'}`)
-        }}>
+    
+      <div className="product-tags">
+        {tags?.map((item) => (
+          <span key={item}>{item}</span>
+        ))}
+      </div>
+
+    
+      <button
+        className="favorite-btn"
+        onClick={() => {
+          toggleFavorite(product);
+          showToast(!isFav ? "Добавлено в избранное" : "Удалено");
+        }}
+      >
         {isFav ? <FaHeart size={20} color="red" /> : <FaRegHeart size={20} />}
       </button>
 
-     
+    
+      <div className="img-wrapper" onClick={() => navigate(`/product/${id}`)}>
+        <img
+          src={img || defaultImg}
+          alt={name}
+          className="product-img"
+          onError={(e) => {
+            e.target.src = defaultImg;
+          }}
+        />
+      </div>
+
+    
+      <p className="product-title">{name}</p>
 
       
-         <p className="product-title">{name}</p>
-         <p className="group">    
+      <div className="bottom">
         <span className="product-price">{price} ₽</span>
-        <span className="cart-icon">
-          <span className="count">{count}</span>
+
+        <div className="cart-icon">
+          {count > 0 && <span className="count">{count}</span>}
           <button
             className="cart-button"
             onClick={() => {
-                 addToCart(product);
-              setCount(count + 1);
-              showToast('Успешно добавлено');
+              addToCart(product);
+              setCount((prev) => prev + 1);
+              showToast("Добавлено в корзину");
             }}
           >
-            {count > 0 ? "+1шт" : <BsCart3 size={20} />}
+            {count > 0 ? "+1" : <BsCart3 size={20} />}
           </button>
-        </span>
-      </p>
+        </div>
+      </div>
     </div>
   );
 };

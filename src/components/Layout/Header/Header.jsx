@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import './Header.css'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Idealogo from '../../../assets/idea-logo.png'
 import ProfileIcon from '../../../assets/profile-icon.png'
@@ -8,16 +8,41 @@ import FavoritesIcon from '../../../assets/favorites-icons.png'
 import CartIcon from '../../../assets/cart-icons.png'
 import { CustomContext } from '../../../store/store';
 import Modal from '../../Modal/Modal';
+import { BiLoaderCircle } from 'react-icons/bi';
 
 
 
 const Header = () => {
-
   const [showForm,setShowForm] = useState(false)
   const toggleForm = () =>  setShowForm(true);
   const closeForm = () => setShowForm(false)
+  const [search, setSearch] = useState('')
+  const [results, setResults] = useState([])
+  const [loading, setLoading] = useState(false)
 const { cartCount, favorites, totalPrice } = useContext(CustomContext)
 
+const navigate = useNavigate()
+
+
+ const handleSearch = async (value) => {
+    setSearch(value);
+
+    if (value.trim().length < 2) {
+      setResults([]);
+      return;
+    }
+
+    try {
+      setLoading(true)
+      const res = await fetch(`http://localhost:3000/products?search=${value}`);
+      const data = await res.json();
+      setLoading(false)
+
+      if (data.products) setResults(data.products.slice(0, 6)); // максимум 6 результатов
+    } catch (err) {
+      console.log("Ошибка поиска:", err);
+    }
+  };
   return (
     <>
     <header className="header">
@@ -46,17 +71,41 @@ const { cartCount, favorites, totalPrice } = useContext(CustomContext)
         <img  className='header-logo' src={Idealogo} alt="" />
         </Link>
         <button className="header-catalog-bth" onClick={toggleForm} >&#9776; Каталог</button>
-        <div className="search-bar">
-  <input type="text" placeholder="Поиск" />
-  <button type="submit" class="search-button">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
-    <path d="M10 2a8 8 0 0 1 6.32 12.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12z"/>
-  </svg>
-</button>
+       <div className="search-bar">
+  <input 
+    type="text" 
+    placeholder="Поиск товаров..." 
+    value={search}
+    onChange={(e) => handleSearch(e.target.value)}
+  />
+  <button type="submit" className="search-button">
+    { loading ? <BiLoaderCircle /> :
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+      <path d="M10 2a8 8 0 0 1 6.32 12.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12z"/>
+    </svg>
+}
+  </button>
 
-
-
+  {results.length > 0 && (
+    <div className="search-results">
+      {results.map(item => (
+        <div 
+          key={item._id} 
+          className="search-item"
+          onClick={() => {
+            navigate(`/product/${item._id}`);
+            setResults([]);
+            setSearch("");
+          }}
+        >
+          <img src={item.img} alt="" />
+          <span>{item.name}</span>
+        </div>
+      ))}
+    </div>
+  )}
 </div>
+
 <div className="header-left">
   <NavLink to="/profile" className="header-icon-wrapper">
     <img src={ProfileIcon} alt="" className="header-icon" />

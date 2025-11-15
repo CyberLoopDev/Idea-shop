@@ -3,6 +3,7 @@
     column-gap: 30px;
     font-size: 24px;
     width: 100%;
+    margin: 50px 0 50px 10px;
 }
 
 .category-text{
@@ -28,4 +29,10 @@
 .category-text.active{
     border-bottom: #7188d4 3px solid;
 }
+
+.loader{
+    text-align: center;
+}
+
+
 
