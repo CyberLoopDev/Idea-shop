@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layout/Layout.jsx";
 import Delivery from "../pages/Delivery/Delivery.jsx"
 import Home from '../pages/Home/Home.jsx'
-import Payment from "../pages/PayMent/Payment.jsx";
+import Payment from "../pages/Payment/Payment.jsx";
 import Return from "../pages/Return/Return.jsx";
 import AboutUs from "../pages/Aboutus/Aboutus.jsx";
 import News from "../pages/News/News.jsx";
