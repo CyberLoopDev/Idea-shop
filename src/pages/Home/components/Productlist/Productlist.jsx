@@ -20,7 +20,7 @@ const ProductList = () => {
     try {
       const tags = active === 0 ? "хит" : active === 1 ? "новинка" : "скидка";
       setLoading(true)
-      const response = await axios.get("http://localhost:3000/products", {
+      const response = await axios.get(import.meta.env.VITE_API_URL + "/products", {
         params: {
           tags, 
           page,

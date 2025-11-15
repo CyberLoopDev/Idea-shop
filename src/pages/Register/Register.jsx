@@ -28,7 +28,7 @@ const Registration = () => {
     const onSubmit = async (data) => {
         setLoading(true)
         try {
-            const res = await axios.post('http://localhost:3000/auth/register', data)
+            const res = await axios.post(import.meta.env.VITE_API_URL +'/auth/register', data)
             setLoading(false)
 
             if (res.data.type === 'success') {

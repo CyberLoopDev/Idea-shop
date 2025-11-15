@@ -7,6 +7,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
+
+
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -31,7 +33,7 @@ const Login = () => {
         setLoading(true)
         try{
 
-        const res = await axios.post('http://localhost:3000/auth/login', { gmail, password })
+        const res = await axios.post(import.meta.env.VITE_API_URL + '/auth/login', { gmail, password })
         setLoading(false)
 
         if(res.data.type === 'success'){

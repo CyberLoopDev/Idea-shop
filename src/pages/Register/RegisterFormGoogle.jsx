@@ -36,7 +36,7 @@ const RegisterFormGoogle = () => {
       };
 
       const res = await axios.patch(
-        "http://localhost:3000/auth/complete_profile",
+        import.meta.env.VITE_API_URL + "/auth/complete_profile",
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );

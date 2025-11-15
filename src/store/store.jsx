@@ -140,7 +140,7 @@ export const ContextProvider = ({ children }) => {
 
   const getProductById = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/products/${id}`)
+      const res = await fetch(import.meta.env.VITE_API_URL + `/products/${id}`)
       if (!res.ok) throw new Error('Ошибка загрузки товара')
       return await res.json()
     } catch (err) {
