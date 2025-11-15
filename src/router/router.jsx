@@ -4,7 +4,7 @@ import Delivery from "../pages/Delivery/Delivery.jsx"
 import Home from '../pages/Home/Home.jsx'
 import Payment from "../pages/Payment/Payment.jsx";
 import Return from "../pages/Return/Return.jsx";
-import AboutUs from "../pages/Aboutus/Aboutus.jsx";
+import AboutUs from "../pages/AboutUs/AboutUs.jsx";
 import News from "../pages/News/News.jsx";
 import Details from "../pages/Details/Details.jsx"
 import Login from '../pages/Auth/Login.jsx'
