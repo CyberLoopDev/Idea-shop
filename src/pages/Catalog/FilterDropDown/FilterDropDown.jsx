@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import './FilterDropdown.css';
+import './FilterDropDown.css';
 import { FiChevronDown } from 'react-icons/fi';
 import { CustomContext } from '../../../store/store.jsx';
 
