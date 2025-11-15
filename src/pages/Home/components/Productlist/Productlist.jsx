@@ -1,5 +1,5 @@
 import ProductCard from "../../../../components/ProductCard/ProductCard";
-import "./ProductList.css";
+import "./Productlist.css";
 import { useEffect, useState } from "react";
 import axios from "axios"; 
 import { BiLoaderCircle } from "react-icons/bi";
