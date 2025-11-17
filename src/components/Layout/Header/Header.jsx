@@ -34,11 +34,11 @@ const navigate = useNavigate()
 
     try {
       setLoading(true)
-      const res = await fetch( import.meta.e `/products?search=${value}`);
+      const res = await fetch( import.meta.env.VITE_API_URL `/products?search=${value}`);
       const data = await res.json();
       setLoading(false)
 
-      if (data.products) setResults(data.products.slice(0, 6)); // максимум 6 результатов
+      if (data.products) setResults(data.products.slice(0, 6)); 
     } catch (err) {
       console.log("Ошибка поиска:", err);
     }
