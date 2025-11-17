@@ -1,42 +1,45 @@
-import { useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { CustomContext } from '../../store/store'; // Убедитесь, что путь к контексту правильный
+import './Modal.css'
+import { categoriesData } from '../../data/componentsData'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { CustomContext } from '../../store/store'
 
-import Filter from "./Filter/Filter";
-import FilteredProducts from "./FilteredProducts/FilteredProducts";
+const Modal = ({ closeForm }) => {
+  const { setFilter } = useContext(CustomContext);
+  const navigate = useNavigate();
 
+  const handleCategoryClick = (item) => {
+    // Устанавливаем фильтр категории
+    setFilter(prev => ({
+      ...prev,
+      category: item.slug   // предполагается, что в categoriesData есть slug
+    }));
 
-const Catalog = () => {
-    // 1. Получаем динамический параметр из URL
-    const { categorySlug } = useParams(); 
-    
-    // 2. Получаем функцию установки фильтра из контекста
-    const { setFilter } = useContext(CustomContext); 
-    
-    useEffect(() => {
-        // Этот эффект срабатывает при первом рендере и при смене categorySlug в URL
-        if (categorySlug) {
-            // Если slug существует, устанавливаем фильтр 'category' в контексте
-            setFilter(prev => ({
-                ...prev,
-                category: categorySlug // Например, 'girls', 'boys'
-            }));
-        } else {
-            // Если мы находимся на чистом /catalog, удаляем фильтр категории
-             setFilter(prev => {
-                const { category, ...rest } = prev; 
-                return rest; 
-            });
-        }
-    // Зависимости: effect должен перезапускаться при изменении slug или функции setFilter
-    }, [categorySlug, setFilter]); 
+    // Закрываем модалку
+    closeForm();
 
-    return (
-        <main style={{ minWidth: '1000px'}}>
-            <Filter />
-            <FilteredProducts />
-        </main>
-    );
-};
+    // Переходим на страницу категории
+    navigate(item.url);
+  };
 
-export default Catalog;
+  return (
+    <div className="showform-overlay">
+      <div className="showform-box">
+        <button className="close-form" onClick={closeForm}>×</button>
+
+        <div className="showform-grid">
+          {categoriesData.items.map(item => (
+            <div className="item" key={item.slug}>
+              <div onClick={() => handleCategoryClick(item)}>
+                <img className='showform-img' src={item.image} alt={item.name} />
+              </div>
+              <p>{item.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Modal;
