@@ -66,7 +66,7 @@ const Orders = () => {
       console.log(user.full_name);
       
 
-      const res = await fetch('http://localhost:3000/orders', {
+      const res = await fetch(import.meta.env.VITE_API_URL + '/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

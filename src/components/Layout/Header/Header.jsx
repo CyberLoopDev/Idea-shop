@@ -34,7 +34,7 @@ const navigate = useNavigate()
 
     try {
       setLoading(true)
-      const res = await fetch(`http://localhost:3000/products?search=${value}`);
+      const res = await fetch( import.meta.e `/products?search=${value}`);
       const data = await res.json();
       setLoading(false)
 

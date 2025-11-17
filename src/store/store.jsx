@@ -110,13 +110,13 @@ export const ContextProvider = ({ children }) => {
     params.limit = limit
 
     const query = new URLSearchParams(params).toString()
-    const res = await fetch(`http://localhost:3000/products?${query}`)
+    const res = await fetch(import.meta.env.VITE_API_URL + `/products?${query}`)
 
     if (!res.ok) throw new Error('Ошибка загрузки товаров')
 
     const data = await res.json()
 
-    // ⚙️ ТВОЙ формат данных, как в Postman:
+   
     if (data.products && data.pagination) {
       return {
         products: data.products,
