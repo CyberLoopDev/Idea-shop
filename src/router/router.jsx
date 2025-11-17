@@ -18,6 +18,9 @@ import Profile from "../pages/Profile/Profile.jsx";
 import PrivateRoute from "../components/PrivateRoutes/PrivateRoute.jsx";
 import Orders from "../pages/Orders/Orders.jsx";
 import ProductMoreInfo from "../components/ProductMoreInfo/ProductMoreInfo.jsx";
+import HistoryOrders from "../pages/Profile/components/HistoryOrders/HistoryOrders.jsx";
+import ContactsData from "../pages/Profile/components/ContactsData/ContactsData.jsx";
+
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +42,10 @@ export const router = createBrowserRouter([
                 { element: <Restore />, path: "restore" },
                 { element: <Registration />, path: "registration" },
                 { element: <RegisterFormGoogle />, path: 'register_google' },
-                { element: <PrivateRoute><Profile /></PrivateRoute>, path: "profile" },
+                { element: <PrivateRoute><Profile /></PrivateRoute>, path: "profile/", children: [
+                    { element: <HistoryOrders />, path: 'orders-user' },
+                    { element: <ContactsData />, path: 'contacts-data' }
+                ] },
                 { element: <PrivateRoute><Orders /></PrivateRoute>, path: 'orders' },
                 { element: <ProductMoreInfo />, path: '/product/:id' }
 

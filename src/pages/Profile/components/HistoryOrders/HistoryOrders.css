@@ -1,0 +1,24 @@
+
+.co-table {
+    min-width: 100%;
+    border-radius: 2px;
+    border: 1px solid #cccccc;
+    border-collapse: unset;
+    border-spacing: 0;
+}
+table {
+    border-collapse: collapse;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+user agent stylesheet
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border-spacing: 2px;
+    border-color: gray;
+}
