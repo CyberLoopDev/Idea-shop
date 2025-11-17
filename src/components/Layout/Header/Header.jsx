@@ -34,7 +34,7 @@ const navigate = useNavigate()
 
     try {
       setLoading(true)
-      const res = await fetch( import.meta.env.VITE_API_URL `/products?search=${value}`);
+      const res = await fetch( import.meta.env.VITE_API_URL + `/products?search=${value}`);
       const data = await res.json();
       setLoading(false)
 
