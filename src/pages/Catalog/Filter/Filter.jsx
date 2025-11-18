@@ -7,7 +7,7 @@ import { CustomContext } from '../../../store/store.jsx';
 const Filter = () => {
   const { filter, setFilter } = useContext(CustomContext);
 
-  // Сброс всех фильтров
+  
   const reset = () => setFilter({
     color: null,
     category: null,
@@ -25,7 +25,7 @@ const Filter = () => {
     tags: []
   });
 
-  // Функция для обновления фильтра по ключу
+
   const handleFilterChange = (key, value) => {
     setFilter({
       ...filter,
@@ -47,8 +47,8 @@ const Filter = () => {
           <FilterDropdown
             key={f.id}
             filter={f}
-            value={filter[f.key]}           // передаем текущее значение фильтра
-            onChange={(value) => handleFilterChange(f.key, value)} // обновление фильтра при выборе
+            value={filter[f.key]}         
+            onChange={(value) => handleFilterChange(f.key, value)} 
           />
         ))}
       </div>
