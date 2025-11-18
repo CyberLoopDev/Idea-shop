@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
                     { element: <ContactsData />, path: 'contacts-data' }
                 ] },
                 { element: <PrivateRoute><Orders /></PrivateRoute>, path: 'orders' },
-                { element: <ProductMoreInfo />, path: '/product/:id' }
+                { element: <ProductMoreInfo />, path: 'product/:id' }
 
         ]
     }
