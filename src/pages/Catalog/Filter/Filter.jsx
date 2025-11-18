@@ -5,8 +5,9 @@ import './Filter.css';
 import { CustomContext } from '../../../store/store.jsx';
 
 const Filter = () => {
-  const { setFilter } = useContext(CustomContext);
+  const { filter, setFilter } = useContext(CustomContext);
 
+  // Сброс всех фильтров
   const reset = () => setFilter({
     color: null,
     category: null,
@@ -24,20 +25,33 @@ const Filter = () => {
     tags: []
   });
 
+  // Функция для обновления фильтра по ключу
+  const handleFilterChange = (key, value) => {
+    setFilter({
+      ...filter,
+      [key]: value
+    });
+  };
+
   return (
     <section className="advanced-filters-section">
-     
-        <div className="filters-header">
-          <div>
-            <h2 className="filters-title">{filterOptionsData.title}</h2>
-          </div>
-          <button className="filters-reset-btn" onClick={reset}>Сбросить</button>
+      <div className="filters-header">
+        <div>
+          <h2 className="filters-title">{filterOptionsData.title}</h2>
         </div>
+        <button className="filters-reset-btn" onClick={reset}>Сбросить</button>
+      </div>
 
-        <div className="filters-grid">
-          {filterOptionsData.filters.map(f => <FilterDropdown key={f.id} filter={f} />)}
-        </div>
-    
+      <div className="filters-grid">
+        {filterOptionsData.filters.map(f => (
+          <FilterDropdown
+            key={f.id}
+            filter={f}
+            value={filter[f.key]}           // передаем текущее значение фильтра
+            onChange={(value) => handleFilterChange(f.key, value)} // обновление фильтра при выборе
+          />
+        ))}
+      </div>
     </section>
   );
 };
