@@ -20,6 +20,7 @@ const FilteredProducts = () => {
 
   
   useEffect(() => {
+    console.log("FILTER CHANGED:", filter);
     fetchProducts(1);
   }, [filter]);
 
