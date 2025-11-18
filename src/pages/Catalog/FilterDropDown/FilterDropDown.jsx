@@ -1,40 +1,51 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { FiChevronDown } from 'react-icons/fi';
-import { CustomContext } from '../../../store/store.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import './FilterDropDown.css';
+import { FiChevronDown } from 'react-icons/fi';
+import { CustomContext } from '../../../store/store.jsx';
+
+const categoryMap = {
+  "Для девочек": "girls",
+  "Для мальчиков": "boys",
+  "Для новорожденных": "newborns",
+  "Канцелярия": "stationery",
+  "Аксессуары": "accessories",
+  "Спорт": "sport",
+  "Настольные игры": "board-games",
+  "Коляски": "strollers",
+  "Развитие": "development",
+  "Конструкторы": "constructors",
+  "Хиты": "hits",
+  "Новинки": "new",
+  "Акции": "sale",
+  "Популярное": "popular"
+};
+
+// Обратная мапа для чтения из URL
+const reverseCategoryMap = Object.fromEntries(
+  Object.entries(categoryMap).map(([k, v]) => [v, k])
+);
 
 const FilterDropdown = ({ filter }) => {
-  const { filter: currentFilter, setFilter } = useContext(CustomContext);
-  const navigate = useNavigate();
+  const { setFilter } = useContext(CustomContext);
   const { categorySlug } = useParams();
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Определяем выбранное значение
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(filter.name);
 
-  // Синхронизируем с глобальным фильтром или URL при монтировании/обновлении URL
+  const dropdownRef = useRef(null);
+
+  // Синхронизация при загрузке или смене URL
   useEffect(() => {
-    if (filter.id === 'category') {
-      if (categorySlug) {
-        const formattedCategory = filter.options.find(
-          opt => opt.toLowerCase().replace(/\s+/g, '-') === categorySlug
-        );
-        if (formattedCategory) {
-          setSelectedValue(formattedCategory);
-          setFilter(prev => ({
-            ...prev,
-            category: formattedCategory
-          }));
-        }
-      } else {
-        setSelectedValue(currentFilter.category || filter.name);
+    if (filter.id === 'category' && categorySlug) {
+      const categoryName = reverseCategoryMap[categorySlug];
+      if (categoryName) {
+        setSelectedValue(categoryName);
+        setFilter(prev => ({ ...prev, category: categoryName }));
       }
-    } else {
-      setSelectedValue(currentFilter[filter.id] || filter.name);
     }
-  }, [categorySlug, currentFilter, filter, setFilter]);
+  }, [categorySlug, filter.id, setFilter]);
 
   const handleSelect = (option) => {
     setSelectedValue(option);
@@ -47,7 +58,7 @@ const FilterDropdown = ({ filter }) => {
 
     // Если это категория — меняем URL
     if (filter.id === 'category') {
-      const slug = option ? option.toLowerCase().replace(/\s+/g, '-') : '';
+      const slug = categoryMap[option];
       navigate(`/catalog/${slug}`);
     }
   };
