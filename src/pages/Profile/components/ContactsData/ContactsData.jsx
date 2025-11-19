@@ -29,17 +29,28 @@ const ContactsData = () => {
   const onSubmit = async (data) => {
   try {
     const token = localStorage.getItem("token"); // JWT
+    const payload = { 
+      full_name: data.name,
+      phone: data.phone
+    };
+    if (data.changePassword) {
+      payload.oldPassword = data.oldPassword;
+      payload.password = data.password;
+      payload.passwordConfirm = data.passwordConfirm;
+    }
+
     const res = await fetch(import.meta.env.VITE_API_URL + "/auth/update-profile", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
     const result = await res.json();
+
     if (result.type === "success") {
-      console.log("Профиль обновлен", result.user);
+      localStorage.setItem("user", JSON.stringify(result.user)); // обновляем локально
       alert("Профиль успешно обновлен!");
     } else {
       alert(result.message);
@@ -49,6 +60,7 @@ const ContactsData = () => {
     alert("Ошибка обновления профиля");
   }
 };
+
 
   return (
     <div className="contacts-data">
