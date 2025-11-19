@@ -26,10 +26,29 @@ const ContactsData = () => {
 
   const changePassword = watch("changePassword");
 
-  const onSubmit = (data) => {
-    console.log("Отправка формы:", data);
-  
-  };
+  const onSubmit = async (data) => {
+  try {
+    const token = localStorage.getItem("token"); // JWT
+    const res = await fetch(import.meta.env.VITE_API_URL + "/auth/update-profile", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    if (result.type === "success") {
+      console.log("Профиль обновлен", result.user);
+      alert("Профиль успешно обновлен!");
+    } else {
+      alert(result.message);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Ошибка обновления профиля");
+  }
+};
 
   return (
     <div className="contacts-data">
