@@ -16,7 +16,7 @@ const ContactsData = () => {
     defaultValues: {
       name: user.full_name || "",
       phone: user.phone || "",
-      email: user.gmail || "",
+      gmail: user.gmail || "",
       changePassword: false,
       oldPassword: "",
       password: "",
@@ -89,7 +89,7 @@ const ContactsData = () => {
           <input
             className="co-input-field"
             placeholder="example@mail.com"
-            {...register("email", {
+            {...register("gmail", {
               required: "Поле не заполнено",
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -97,7 +97,7 @@ const ContactsData = () => {
               }
             })}
           />
-          {errors.email && <div className="co-input-notice co-notice--danger">{errors.email.message}</div>}
+          {errors.gmail && <div className="co-input-notice co-notice--danger">{errors.gmail.message}</div>}
         </div>
 
        
