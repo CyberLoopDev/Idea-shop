@@ -24,51 +24,73 @@ const ContactsData = () => {
     }
   });
 
+  const [loading, setLoading] = useState(false);
   const changePassword = watch("changePassword");
 
+  useEffect(() => {
+    setValue("name", user.full_name || "");
+    setValue("phone", user.phone || "");
+    setValue("gmail", user.gmail || "");
+  }, [user, setValue]);
+
   const onSubmit = async (data) => {
-  try {
-    const token = localStorage.getItem("token"); // JWT
-    const payload = { 
-      full_name: data.name,
-      phone: data.phone
-    };
     if (data.changePassword) {
-      payload.oldPassword = data.oldPassword;
-      payload.password = data.password;
-      payload.passwordConfirm = data.passwordConfirm;
+      if (!data.oldPassword || !data.password || !data.passwordConfirm) {
+        alert("Заполните все поля для смены пароля");
+        return;
+      }
+      if (data.password !== data.passwordConfirm) {
+        alert("Пароли не совпадают");
+        return;
+      }
     }
 
-    const res = await fetch(import.meta.env.VITE_API_URL + "/auth/update-profile", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(payload),
-    });
-    const result = await res.json();
+    setLoading(true);
+    try {
+      const token = localStorage.getItem("token");
+      const payload = { 
+        full_name: data.name,
+        phone: data.phone,
+        gmail: data.gmail
+      };
+      if (data.changePassword) {
+        payload.oldPassword = data.oldPassword;
+        payload.password = data.password;
+        payload.passwordConfirm = data.passwordConfirm;
+      }
 
-    if (result.type === "success") {
-      localStorage.setItem("user", JSON.stringify(result.user)); // обновляем локально
-      alert("Профиль успешно обновлен!");
-    } else {
-      alert(result.message);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/update-profile`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+
+      if (result.type === "success") {
+        localStorage.setItem("user", JSON.stringify(result.user));
+        alert("Профиль успешно обновлен!");
+      } else {
+        if (Array.isArray(result.message)) {
+          alert(result.message.map(e => e.msg).join("\n"));
+        } else {
+          alert(result.message);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Ошибка обновления профиля");
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error(err);
-    alert("Ошибка обновления профиля");
-  }
-};
-
+  };
 
   return (
     <div className="contacts-data">
       <h2 className="title">Контактные данные</h2>
-
       <form className="co-form" onSubmit={handleSubmit(onSubmit)}>
-
-       
         <div className="co-input co-input--required">
           <label className="co-input-label">Контактное лицо (ФИО)</label>
           <input
@@ -86,10 +108,7 @@ const ContactsData = () => {
             placeholder="+7 (999) 999-99-99"
             {...register("phone", {
               required: "Поле не заполнено",
-              pattern: {
-                value: /^\+?[0-9\s()-]{7,}$/i,
-                message: "Неверный формат телефона"
-              }
+              pattern: { value: /^\+?[0-9\s()-]{7,}$/i, message: "Неверный формат телефона" }
             })}
           />
           <div className="co-input-description">Например: +7(926)111-11-11</div>
@@ -103,16 +122,12 @@ const ContactsData = () => {
             placeholder="example@mail.com"
             {...register("gmail", {
               required: "Поле не заполнено",
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Неверный формат email"
-              }
+              pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Неверный формат email" }
             })}
           />
           {errors.gmail && <div className="co-input-notice co-notice--danger">{errors.gmail.message}</div>}
         </div>
 
-       
         <div className="co-input co-input--checkbox">
           <label className="co-toggable_field">
             <input type="checkbox" {...register("changePassword")} />
@@ -122,47 +137,28 @@ const ContactsData = () => {
 
         {changePassword && (
           <>
-          
             <div className="co-input co-input--required">
               <label className="co-input-label">Старый пароль</label>
-              <input
-                type="password"
-                className="co-input-field"
-                {...register("oldPassword", { required: "Поле не заполнено" })}
-              />
+              <input type="password" className="co-input-field" {...register("oldPassword", { required: "Поле не заполнено" })}/>
               {errors.oldPassword && <div className="co-input-notice co-notice--danger">{errors.oldPassword.message}</div>}
             </div>
-
-           
             <div className="co-input co-input--required">
               <label className="co-input-label">Новый пароль</label>
-              <input
-                type="password"
-                className="co-input-field"
-                {...register("password", { required: "Поле не заполнено" })}
-              />
+              <input type="password" className="co-input-field" {...register("password", { required: "Поле не заполнено" })}/>
               {errors.password && <div className="co-input-notice co-notice--danger">{errors.password.message}</div>}
             </div>
-
-           
             <div className="co-input co-input--required">
               <label className="co-input-label">Повторите пароль</label>
-              <input
-                type="password"
-                className="co-input-field"
-                {...register("passwordConfirm", {
-                  required: "Поле не заполнено",
-                  validate: (v) => v === watch("password") || "Пароли не совпадают"
-                })}
-              />
+              <input type="password" className="co-input-field" {...register("passwordConfirm", { required: "Поле не заполнено", validate: v => v === watch("password") || "Пароли не совпадают" })}/>
               {errors.passwordConfirm && <div className="co-input-notice co-notice--danger">{errors.passwordConfirm.message}</div>}
             </div>
           </>
         )}
 
-      
         <div className="co-form-controls">
-          <button className="co-button co-form-button" type="submit">Сохранить изменения</button>
+          <button className="co-button co-form-button" type="submit" disabled={loading}>
+            {loading ? "Сохраняем..." : "Сохранить изменения"}
+          </button>
         </div>
       </form>
     </div>
