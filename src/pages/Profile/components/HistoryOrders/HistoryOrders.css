@@ -1,6 +1,9 @@
+.history-orders{
+    width: 1000px;
+}
 
 .co-table {
-    min-width: 100%;
+    width: 1000px;
     border-radius: 2px;
     border: 1px solid #cccccc;
     border-collapse: unset;

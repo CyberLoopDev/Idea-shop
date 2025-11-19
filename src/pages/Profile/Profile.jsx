@@ -16,6 +16,7 @@ const Profile = () => {
           <li className='link'>Выход</li>
           </ul>
           </aside> 
+          
 
           <main className='profile-lyt'>
             <Outlet /></main>      

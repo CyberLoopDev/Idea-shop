@@ -1,82 +1,84 @@
-import Breadcrumb from '../../../../components/Breadcrumb/Breadcrumb'
-import './HistoryOrders.css'
-
-
+import { useState, useEffect } from "react";
+import './HistoryOrders.css';
 
 const HistoryOrders = () => {
-  return (
-    <>
-    
-    <div>
-      <table class="co-table co-table--to_card">
-    <tbody><tr class="co-table-row co-table-row--head">
-      <td class="co-table-cell co-table-cell--head">
-      Дата оформления
-      </td>
-      <td class="co-table-cell co-table-cell--head">
-      Номер заказа
-      </td>
-      <td class="co-table-cell co-table-cell--head">
-      Статус
-      </td>
-      <td class="co-table-cell co-table-cell--head co-table-cell--hide@sm">
-      Оплата
-      </td>
-      <td class="co-table-cell co-table-cell--head co-table-cell--hide@sm">
-      Сумма заказа
-      </td>
-    </tr>
-    
-    <tr class="co-table-row co-table-row--body co-table-row--striped">
-      <td class="co-table-cell co-table-cell--body" data-title="Дата оформления">
-        04.11.2025 15:44
-      </td>
-      <td class="co-table-cell co-table-cell--body" data-title="Номер заказа">
-      <a class="co-link" href="https://demo-idea.myinsales.ru/orders/b2b69736c434e44e869b4e8eb083272c">1110</a>
-      </td>
-      <td class="co-table-cell co-table-cell--body" data-title="Статус">
-        Принят
-      </td>
-      <td class="co-table-cell co-table-cell--body co-table-cell--hide@sm" data-title="Оплата">
-        
-        Не оплачен
-        
-      </td>
-      <td class="co-table-cell co-table-cell--body co-table-cell--hide@sm" data-title="Сумма заказа">
-        43 600&nbsp;₽
-      </td>
-    </tr>
-    
-    <tr class="co-table-row co-table-row--body co-table-row--striped">
-      <td class="co-table-cell co-table-cell--body" data-title="Дата оформления">
-        04.11.2025 15:39
-      </td>
-      <td class="co-table-cell co-table-cell--body" data-title="Номер заказа">
-      <a class="co-link" href="https://demo-idea.myinsales.ru/orders/7d3bab0c097ac60de5dc6e24074e5146">1109</a>
-      </td>
-      <td class="co-table-cell co-table-cell--body" data-title="Статус">
-        Принят
-      </td>
-      <td class="co-table-cell co-table-cell--body co-table-cell--hide@sm" data-title="Оплата">
-        
-        Не оплачен
-        
-      </td>
-      <td class="co-table-cell co-table-cell--body co-table-cell--hide@sm" data-title="Сумма заказа">
-        189 760&nbsp;₽
-      </td>
-    </tr>
-    
-    <tr class="co-table-row co-table-row--foot">
-      <td class="co-table-cell co-table-cell--foot" colspan="5">
-        <div class="co-order_history-total_title">Сумма выполненных заказов:</div>
-        <div class="co-order_history-total_sum co-price">0&nbsp;₽</div>
-      </td>
-    </tr>
-  </tbody></table>
-    </div>
-    </>
-  )
-}
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-export default HistoryOrders
+  const token = localStorage.getItem("token"); // предполагаем, что токен хранится в localStorage
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/orders`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) throw new Error("Ошибка при загрузке заказов");
+
+        const data = await res.json();
+        setOrders(data.orders || []);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, [token]);
+
+  if (loading) return <p>Загрузка заказов...</p>;
+  if (error) return <p>Ошибка: {error}</p>;
+  if (!orders.length) return <p>У вас пока нет заказов.</p>;
+
+  const totalSum = orders.reduce((acc, order) => acc + order.total, 0);
+
+  return (
+    <div className="history-orders">
+      <table className="co-table co-table--to_card">
+        <thead>
+          <tr className="co-table-row co-table-row--head">
+            <th className="co-table-cell co-table-cell--head">Дата оформления</th>
+            <th className="co-table-cell co-table-cell--head">Номер заказа</th>
+            <th className="co-table-cell co-table-cell--head">Статус</th>
+            <th className="co-table-cell co-table-cell--head co-table-cell--hide@sm">Оплата</th>
+            <th className="co-table-cell co-table-cell--head co-table-cell--hide@sm">Сумма заказа</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((order) => (
+            <tr key={order._id} className="co-table-row co-table-row--body co-table-row--striped">
+              <td className="co-table-cell co-table-cell--body" data-title="Дата оформления">
+                {new Date(order.createdAt).toLocaleString()}
+              </td>
+              <td className="co-table-cell co-table-cell--body" data-title="Номер заказа">
+                <a className="co-link" href={`/orders/${order._id}`}>{order._id.slice(-6)}</a>
+              </td>
+              <td className="co-table-cell co-table-cell--body" data-title="Статус">{order.status || "Принят"}</td>
+              <td className="co-table-cell co-table-cell--body co-table-cell--hide@sm" data-title="Оплата">
+                {order.isPaid ? "Оплачен" : "Не оплачен"}
+              </td>
+              <td className="co-table-cell co-table-cell--body co-table-cell--hide@sm" data-title="Сумма заказа">
+                {order.total.toLocaleString()} ₽
+              </td>
+            </tr>
+          ))}
+
+          <tr className="co-table-row co-table-row--foot">
+            <td className="co-table-cell co-table-cell--foot" colSpan="5">
+              <div className="co-order_history-total_title">Сумма выполненных заказов:</div>
+              <div className="co-order_history-total_sum co-price">{totalSum.toLocaleString()} ₽</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default HistoryOrders;

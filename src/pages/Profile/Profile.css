@@ -1,4 +1,82 @@
-.profile{
-    margin-top: 100px;
-    display: flex;
+/* Profile.css */
+
+.profile {
+  margin-top: 100px;
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 100px); /* чтобы футер не прыгал */
+  background-color: #f7f7f7; /* легкий фон */
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Боковое меню */
+.navbar {
+  width: 250px; /* фиксированная ширина для навигации */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.list-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.list-links .link {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.list-links .link a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.list-links .link a.active {
+  color: #007bff;
+  font-weight: 600;
+}
+
+.list-links .link a:hover {
+  color: #0056b3;
+}
+
+/* Основной контент */
+.profile-lyt {
+  flex: 1; /* занимает оставшуюся ширину */
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 400px;
+  box-sizing: border-box;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+  .profile {
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  .navbar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .profile-lyt {
+    width: 100%;
+    min-height: auto;
+  }
 }

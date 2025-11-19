@@ -1,0 +1,88 @@
+.contacts-data {
+  width: 1000px;
+}
+
+.co-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.co-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.co-input-label {
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #333;
+  font-weight: 500;
+}
+
+.co-input-field {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  font-size: 15px;
+}
+
+.co-input-field:focus {
+  border-color: #444;
+}
+
+.co-input-description {
+  color: #7d7d7d;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.co-input-notice {
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.co-notice--danger {
+  color: #e4001e;
+}
+
+/* Чекбокс */
+.co-toggable_field-input--checkbox input {
+  display: none;
+}
+
+.co-toggable_field-input--checkbox span {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #b9b9b9;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+}
+
+.co-toggable_field-input--checkbox input:checked + span {
+  background: #000;
+}
+
+.co-form-controls {
+  margin-top: 15px;
+}
+
+.co-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #000;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.co-button:hover {
+  background: #222;
+}
